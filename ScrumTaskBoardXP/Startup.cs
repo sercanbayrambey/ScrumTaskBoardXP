@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ScrumTaskBoardXP.Business.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +28,9 @@ namespace ScrumTaskBoardXP
         {
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
-
+            services.AddDIScopes();
+            services.AddAutomapperConfiguration();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(o => o.LoginPath = new PathString("/login"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +52,7 @@ namespace ScrumTaskBoardXP
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

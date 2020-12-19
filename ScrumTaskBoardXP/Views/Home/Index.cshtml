@@ -2,7 +2,228 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section id="main">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success my-2 float-right" data-toggle="modal" data-target="#newTaskModal">
+                Yeni Görev Ekle
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header todo-card-header">
+                    Todo
+                </div>
+                <div class="todo-card-body bg-lightgray">
+                    <div class="todo-card">
+                        <p>Web sayfası kurulumu</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Play Store Uygulama Yükleme</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header todo-card-header">
+                    In Progress
+                </div>
+                <div class="todo-card-body bg-lightgray">
+                    <div class="todo-card">
+                        <p>Web sayfası kurulumu</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Play Store Uygulama Yükleme</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header todo-card-header">
+                    In Review
+                </div>
+                <div class="todo-card-body bg-lightgray">
+                    <div class="todo-card">
+                        <p>Web sayfası kurulumu</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Play Store Uygulama Yükleme</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header todo-card-header">
+                    Done
+                </div>
+                <div class="todo-card-body bg-lightgray">
+                    <div class="todo-card">
+                        <p>Web sayfası kurulumu</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Play Store Uygulama Yükleme</p>
+                    </div>
+
+                    <div class="todo-card">
+                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Yeni Görev Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="border border-dark p-4">
+                        <div class="row text-center">
+                            <div class="col-sm-4">
+                                <h1>SB Software</h1>
+                            </div>
+                            <div class="col-sm-4">
+                                <h3 class="bg-dark text-center text-white p-4">TEKNIK KART</h3>
+                            </div>
+                            <div class="col-sm-4">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Tarih:</th>
+                                        <td><input type="text" class="form-control" name="name" value="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kart No:</th>
+                                        <td><input type="text" class="form-control" name="name" value="" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Proje No/Adı:</th>
+                                        <td><input type="text" class="form-control" name="name" value="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Teknik Uzman:</th>
+                                        <td><input type="text" class="form-control" name="name" value="" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Tahmini Süre:</th>
+                                        <td><input type="text" class="form-control" name="name" value="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Gerçekleşen Süre:</th>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="jobDescription" class="float-left"><strong>İşin Açıklaması:</strong></label>
+                                    <textarea class="form-control" style="min-height: 200px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="jobDescription" class="float-left"><strong>Notlar:</strong></label>
+                                    <textarea class="form-control" style="min-height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="float-left"><strong>İş Takibi:</strong></label>
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tarih</th>
+                                            <th>Durum</th>
+                                            <th>Yapılacak İş</th>
+                                            <th>Açıklama</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Görevi Ekle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
