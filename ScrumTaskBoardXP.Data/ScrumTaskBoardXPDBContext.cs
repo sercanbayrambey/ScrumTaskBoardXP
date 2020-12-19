@@ -10,11 +10,12 @@ namespace ScrumTaskBoardXP.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=SERCAN;Database=SB.B3DTournamentSystem;Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Server=SERCAN;Database=ScrumTaskBoardXP;Integrated Security=true;");
             base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<TaskEntity> Tasks{ get; set; }
-
+        public DbSet<TaskTodosEntity> TasksTodos { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
     }
 }
