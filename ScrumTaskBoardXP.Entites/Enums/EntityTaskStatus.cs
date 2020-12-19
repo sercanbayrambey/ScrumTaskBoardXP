@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ScrumTaskBoardXP.Entites.Enums
 {
-    public enum TaskStatus
+    public enum EntityTaskStatus
     {
         Todo = 0,
         InProgress,

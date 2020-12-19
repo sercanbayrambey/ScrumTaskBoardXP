@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ScrumTaskBoardXP.Business.Abstract;
+using ScrumTaskBoardXP.Data.Dtos;
+using ScrumTaskBoardXP.Entites.Enums;
 using ScrumTaskBoardXP.Models;
+using ScrumTaskBoardXP.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,16 +16,27 @@ namespace ScrumTaskBoardXP.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ITaskService _taskService;
+        private readonly ITaskTodosService _taskTodosService;
+        private readonly IMapper _mapper;
+        public HomeController(ITaskService taskService, ITaskTodosService taskTodosService, IMapper mapper)
         {
-            _logger = logger;
+            _taskService = taskService;
+            _taskTodosService = taskTodosService;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var dto = _mapper.Map<List<TaskDto>>(_taskService.GetAll());
+            TasksViewModel tasksViewModel = new TasksViewModel
+            {
+                DoneTasks = dto.Where(I => I.Status == EntityTaskStatus.Done).ToList(),
+                InProgressTasks = dto.Where(I => I.Status == EntityTaskStatus.InProgress).ToList(),
+                InReviewTasks = dto.Where(I => I.Status == EntityTaskStatus.InReview).ToList(),
+                TodoTasks = dto.Where(I => I.Status == EntityTaskStatus.Todo).ToList()
+            };
+            return View(tasksViewModel);
         }
 
         public IActionResult Privacy()

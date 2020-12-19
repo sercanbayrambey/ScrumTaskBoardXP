@@ -12,7 +12,7 @@ namespace ScrumTaskBoardXP.Entites.Concrete
         public DateTime ActualTime { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
-        public TaskStatus Status{ get; set; }
+        public EntityTaskStatus Status{ get; set; }
         public ICollection<TaskTodosEntity> TaskTodos{ get; set; }
         public UserEntity User { get; set; }
         public int UserId { get; set; }

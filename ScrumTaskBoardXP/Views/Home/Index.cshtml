@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TasksViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -17,18 +18,19 @@
                     Todo
                 </div>
                 <div class="todo-card-body bg-lightgray">
-                    <div class="todo-card">
-                        <p>Web sayfası kurulumu</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Play Store Uygulama Yükleme</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
-                    </div>
-
+                    @if (Model.TodoTasks.Count == 0)
+                    {
+                        <p class="badge-info p-2">Burada hiç görev yok!</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.TodoTasks)
+                        {
+                            <div class="todo-card">
+                                <p>@item.Name</p>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -39,18 +41,19 @@
                     In Progress
                 </div>
                 <div class="todo-card-body bg-lightgray">
-                    <div class="todo-card">
-                        <p>Web sayfası kurulumu</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Play Store Uygulama Yükleme</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
-                    </div>
-
+                    @if (Model.InProgressTasks.Count == 0)
+                    {
+                        <p class="badge-info p-2">Burada hiç görev yok!</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.InProgressTasks)
+                        {
+                            <div class="todo-card">
+                                <p>@item.Name</p>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -61,17 +64,20 @@
                     In Review
                 </div>
                 <div class="todo-card-body bg-lightgray">
-                    <div class="todo-card">
-                        <p>Web sayfası kurulumu</p>
-                    </div>
+                    @if (Model.InReviewTasks.Count == 0)
+                    {
+                        <p class="badge-info p-2">Burada hiç görev yok!</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.InReviewTasks)
+                        {
+                            <div class="todo-card">
+                                <p>@item.Name</p>
+                            </div>
+                        }
+                    }
 
-                    <div class="todo-card">
-                        <p>Play Store Uygulama Yükleme</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
-                    </div>
 
                 </div>
             </div>
@@ -83,17 +89,19 @@
                     Done
                 </div>
                 <div class="todo-card-body bg-lightgray">
-                    <div class="todo-card">
-                        <p>Web sayfası kurulumu</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Play Store Uygulama Yükleme</p>
-                    </div>
-
-                    <div class="todo-card">
-                        <p>Laoreet ac, aliquam sit amet justo nunc tempor, metus vel placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante fusce non varius purus aenean nec magna felis fusce vestibulum.</p>
-                    </div>
+                    @if (Model.DoneTasks.Count == 0)
+                    {
+                        <p class="badge-info p-2">Burada hiç görev yok!</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.DoneTasks)
+                        {
+                            <div class="todo-card">
+                                <p>@item.Name</p>
+                            </div>
+                        }
+                    }
 
                 </div>
             </div>
