@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ScrumTaskBoardXP.Data.Dtos;
+using ScrumTaskBoardXP.Entites.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +16,7 @@ namespace ScrumTaskBoardXP.Web.ViewComponents
         {
             return View(taskDto);
         }
+
+    
     }
 }

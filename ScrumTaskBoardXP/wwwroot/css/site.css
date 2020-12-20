@@ -95,6 +95,10 @@ body {
     margin-bottom: 5rem !important;
 }
 
-.modal-dialog{
+#newTaskModal .modal-dialog {
     max-width: 1200px;
+}
+
+.modal-task-details .modal-header{
+    display: block !important;
 }

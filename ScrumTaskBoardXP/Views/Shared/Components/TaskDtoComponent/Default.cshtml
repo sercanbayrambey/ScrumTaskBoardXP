@@ -1,9 +1,10 @@
 ﻿@model TaskDto
 @{
     Layout = null;
+    bool isEdit = Model.Id > 0;
 }
 
-<form class="border border-dark p-4" method="post" asp-action="Add" asp-controller="Task">
+<form class="border border-dark p-4" method="post" asp-action="@(isEdit ? "Update" : "Add")" asp-controller="Task">
     <div class="row text-center">
         <div class="col-sm-4">
             <h1>SB Software</h1>
@@ -15,7 +16,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Tarih:</th>
-                    <td><input type="text" class="form-control" asp-for="@Model.DateAdded" disabled value="@DateTime.Now" /></td>
+                    <td><input type="text" class="form-control" asp-for="@Model.DateAdded" disabled value="@(!isEdit ? DateTime.Now : Model.DateAdded)" /></td>
                 </tr>
                 <tr>
                     <th>Kart No:</th>
@@ -28,13 +29,19 @@
         <div class="col-sm-6">
             <table class="table table-bordered">
                 <tr>
-                   
+
                     <th>Proje No/Adı:</th>
-                    <td> <span asp-validation-for="Name" class="text-danger"></span> <input type="text" class="form-control" asp-for="Name" value="" /></td>
+                    <td> <span asp-validation-for="Name" class="text-danger"></span> <input type="text" class="form-control" asp-for="Name" /></td>
                 </tr>
                 <tr>
                     <th>Teknik Uzman:</th>
                     <td><span asp-validation-for="UserId" class="text-danger"></span><input type="text" data-val="false" class="form-control" asp-for="UserId" /></td>
+                </tr>
+                <tr>
+                    <th>Durum:</th>
+                    <td><span asp-validation-for="Status" class="text-danger"></span>
+                    <select  class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EntityTaskStatus>()"></select>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -109,6 +116,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" >Görevi Ekle</button>
+        <button type="submit" class="btn btn-primary" >Kaydet</button>
     </div>
 </form>

@@ -30,5 +30,29 @@ namespace ScrumTaskBoardXP.Web.Controllers
             return RedirectToAction("Index", "Home");
 
         }
+
+        public IActionResult Update(int id)
+        {
+            var task = _taskService.GetById(id);
+            if (task == null)
+                return NotFound();
+            var taskDto = _mapper.Map<TaskDto>(task);
+            return View(taskDto);
+        }
+
+
+        [HttpPost]
+        public IActionResult Update (TaskDto taskDto)
+        {
+            if (taskDto == null)
+                return NotFound();
+            /*            if (ModelState.IsValid)
+                        {
+
+                        }*/
+
+            _taskService.Update(_mapper.Map<TaskEntity>(taskDto));
+            return RedirectToAction("Update", new { id = taskDto.Id });
+        }
     }
 }

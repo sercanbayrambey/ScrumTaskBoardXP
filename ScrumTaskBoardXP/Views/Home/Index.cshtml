@@ -26,8 +26,42 @@
                     {
                         @foreach (var item in Model.TodoTasks)
                         {
-                            <div class="todo-card">
+                            <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
                                 <p>@item.Name</p>
+                            </div>
+
+                            <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="row no-gutters">
+                                                <div class="col-11">
+                                                    <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                </div>
+                                                <div class="col-1">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class="text-muted d-block"><u>Todo</u> listesinde.</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label><strong>Açıklama</strong></label>
+                                            <p>@item.Description</p>
+                                        </div>
+                                        <div class="modal-footer d-block">
+                                            <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                            <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                            <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         }
                     }
@@ -49,26 +83,39 @@
                     {
                         @foreach (var item in Model.InProgressTasks)
                         {
-                            <div  data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
+                            <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
                                 <p>@item.Name</p>
                             </div>
 
-                            <div class="modal fade" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                            <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            <div class="row no-gutters">
+                                                <div class="col-11">
+                                                    <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                </div>
+                                                <div class="col-1">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class="text-muted d-block"><u>In Progress</u> listesinde.</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-body">
-                                            @item.Description
-                                            @item.Name
+                                            <label><strong>Açıklama</strong></label>
+                                            <p>@item.Description</p>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        <div class="modal-footer d-block">
+                                            <a  class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                            <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                            <a  class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
                                         </div>
                                     </div>
                                 </div>
@@ -94,11 +141,43 @@
                     {
                         @foreach (var item in Model.InReviewTasks)
                         {
-                            <a href="#">
-                                <div class="todo-card">
-                                    <p>@item.Name</p>
+                            <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
+                                <p>@item.Name</p>
+                            </div>
+
+                            <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="row no-gutters">
+                                                <div class="col-11">
+                                                    <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                </div>
+                                                <div class="col-1">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class="text-muted d-block"><u>In Review</u> listesinde.</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label><strong>Açıklama</strong></label>
+                                            <p>@item.Description</p>
+                                        </div>
+                                        <div class="modal-footer d-block">
+                                            <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                            <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                            <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
+                            </div>
                         }
                     }
 
@@ -121,8 +200,42 @@
                     {
                         @foreach (var item in Model.DoneTasks)
                         {
-                            <div class="todo-card">
+                            <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
                                 <p>@item.Name</p>
+                            </div>
+
+                            <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="row no-gutters">
+                                                <div class="col-11">
+                                                    <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                </div>
+                                                <div class="col-1">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class="text-muted d-block"><u>Done</u> listesinde.</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label><strong>Açıklama</strong></label>
+                                            <p>@item.Description</p>
+                                        </div>
+                                        <div class="modal-footer d-block">
+                                            <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                            <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                            <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         }
                     }

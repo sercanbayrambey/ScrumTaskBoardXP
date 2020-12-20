@@ -1,0 +1,8 @@
+﻿@model TaskDto
+@{
+    ViewData["Title"] = "Görevi Düzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Component.InvokeAsync("TaskDtoComponent", new {taskDto = Model })
+
