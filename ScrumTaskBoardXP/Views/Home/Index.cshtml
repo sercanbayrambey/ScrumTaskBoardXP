@@ -20,59 +20,51 @@
                 <div class="todo-card-body bg-lightgray">
                     <ul class="list-unstyled ul-todo" id="todo">
 
-                        @if (Model.TodoTasks.Count == 0)
+                        @foreach (var item in Model.TodoTasks)
                         {
-                            <li><p class="badge-info p-2">Burada hiç görev yok!</p></li>
-                        }
-                        else
-                        {
-                            @foreach (var item in Model.TodoTasks)
-                            {
-                                <li>
+                            <li>
 
-                                    <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
-                                        <p>@item.Name</p>
-                                    </div>
+                                <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
+                                    <p>@item.Name</p>
+                                </div>
 
-
-
-                                    <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-11">
-                                                            <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <p class="text-muted d-block"><u>Todo</u> listesinde.</p>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
-                                                        </div>
+                                <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="row no-gutters">
+                                                    <div class="col-11">
+                                                        <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p class="text-muted d-block"><u>Todo</u> listesinde.</p>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <label><strong>Açıklama</strong></label>
-                                                    <p>@item.Description</p>
-                                                </div>
-                                                <div class="modal-footer d-block">
-                                                    <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
-                                                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
-                                                    <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
-                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label><strong>Açıklama</strong></label>
+                                                <p>@item.Description</p>
+                                            </div>
+                                            <div class="modal-footer d-block">
+                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                                <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
 
-                            }
                         }
+
                     </ul>
                 </div>
             </div>
@@ -86,59 +78,54 @@
                 <div class="todo-card-body bg-lightgray">
                     <ul class="list-unstyled ul-progress" id="inProgress">
 
-                        @if (Model.InProgressTasks.Count == 0)
+
+                        @foreach (var item in Model.InProgressTasks)
                         {
-                            <li><p class="badge-info p-2">Burada hiç görev yok!</p></li>
-                        }
-                        else
-                        {
-                            @foreach (var item in Model.InProgressTasks)
-                            {
-                                <li>
+                            <li>
 
-                                    <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
-                                        <p>@item.Name</p>
-                                    </div>
+                                <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
+                                    <p>@item.Name</p>
+                                </div>
 
 
 
-                                    <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-11">
-                                                            <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <p class="text-muted d-block"><u>In Progress</u> listesinde.</p>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
-                                                        </div>
+                                <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="row no-gutters">
+                                                    <div class="col-11">
+                                                        <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p class="text-muted d-block"><u>In Progress</u> listesinde.</p>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <label><strong>Açıklama</strong></label>
-                                                    <p>@item.Description</p>
-                                                </div>
-                                                <div class="modal-footer d-block">
-                                                    <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
-                                                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
-                                                    <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
-                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label><strong>Açıklama</strong></label>
+                                                <p>@item.Description</p>
+                                            </div>
+                                            <div class="modal-footer d-block">
+                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                                <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
 
-                            }
                         }
+
                     </ul>
                 </div>
             </div>
@@ -151,60 +138,53 @@
                 </div>
                 <div class="todo-card-body bg-lightgray">
                     <ul class="list-unstyled ul-review" id="review">
-
-                        @if (Model.InReviewTasks.Count == 0)
+                        @foreach (var item in Model.InReviewTasks)
                         {
-                            <li><p class="badge-info p-2">Burada hiç görev yok!</p></li>
-                        }
-                        else
-                        {
-                            @foreach (var item in Model.InReviewTasks)
-                            {
-                                <li>
+                            <li>
 
-                                    <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
-                                        <p>@item.Name</p>
-                                    </div>
+                                <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
+                                    <p>@item.Name</p>
+                                </div>
 
 
 
-                                    <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-11">
-                                                            <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <p class="text-muted d-block"><u>In Review</u> listesinde.</p>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
-                                                        </div>
+                                <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="row no-gutters">
+                                                    <div class="col-11">
+                                                        <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p class="text-muted d-block"><u>In Review</u> listesinde.</p>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <label><strong>Açıklama</strong></label>
-                                                    <p>@item.Description</p>
-                                                </div>
-                                                <div class="modal-footer d-block">
-                                                    <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
-                                                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
-                                                    <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
-                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label><strong>Açıklama</strong></label>
+                                                <p>@item.Description</p>
+                                            </div>
+                                            <div class="modal-footer d-block">
+                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                                <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
 
-                            }
                         }
+
                     </ul>
 
                 </div>
@@ -219,58 +199,51 @@
                 <div class="todo-card-body bg-lightgray">
                     <ul class="list-unstyled ul-done" id="done">
 
-                        @if (Model.DoneTasks.Count == 0)
+                        @foreach (var item in Model.DoneTasks)
                         {
-                            <li><p class="badge-info p-2">Burada hiç görev yok!</p></li>
-                        }
-                        else
-                        {
-                            @foreach (var item in Model.DoneTasks)
-                            {
-                                <li>
+                            <li>
 
-                                    <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" class="todo-card">
-                                        <p>@item.Name</p>
-                                    </div>
+                                <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
+                                    <p>@item.Name</p>
+                                </div>
 
 
 
-                                    <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <div class="row no-gutters">
-                                                        <div class="col-11">
-                                                            <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <p class="text-muted d-block"><u>Done</u> listesinde.</p>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
-                                                        </div>
+                                <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="row no-gutters">
+                                                    <div class="col-11">
+                                                        <h5 class="modal-title" id="exampleModalLabel">@item.Name</h5>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <p class="text-muted d-block"><u>Done</u> listesinde.</p>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
                                                     </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <label><strong>Açıklama</strong></label>
-                                                    <p>@item.Description</p>
-                                                </div>
-                                                <div class="modal-footer d-block">
-                                                    <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
-                                                    <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
-                                                    <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
-                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label><strong>Açıklama</strong></label>
+                                                <p>@item.Description</p>
+                                            </div>
+                                            <div class="modal-footer d-block">
+                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
+                                                <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat</button>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id">Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
 
-                            }
                         }
                     </ul>
 
@@ -308,8 +281,18 @@
                 connectWith: "ul",
                 dropOnEmpty: true,
                 receive: function (event, ui) {
-                    console.log(event.target.id);
-                    console.log(ui.item);
+                    var newState = event.target.id;
+                    var item = ui.item;
+                    var movedItemId = item.find(".todo-card").attr("id")
+
+                    $.post("/Task/ChangeTaskState", { id: movedItemId, newState: event.target.id }
+                    ).done(function (data) {
+                        console.log("Success!!");
+                    })
+                        .fail(function (data) {
+                            console.log("Error" + data)
+                        });
+
                 }
             }).disableSelection();
         });

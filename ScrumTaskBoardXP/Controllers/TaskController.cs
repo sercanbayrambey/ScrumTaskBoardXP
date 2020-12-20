@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
+using ScrumTaskBoardXP.Entites.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,37 @@ namespace ScrumTaskBoardXP.Web.Controllers
 
             _taskService.Update(_mapper.Map<TaskEntity>(taskDto));
             return RedirectToAction("Update", new { id = taskDto.Id });
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeTaskState(int id, string newState)
+        {
+            if (id<0)
+                return BadRequest();
+            EntityTaskStatus taskState = new EntityTaskStatus();
+            switch (newState)
+            {
+                case "todo":
+                    taskState = EntityTaskStatus.Todo;
+                    break;
+                case "inProgress":
+                    taskState = EntityTaskStatus.InProgress;
+                    break;
+                case "review":
+                    taskState = EntityTaskStatus.InReview;
+                    break;
+                case "done":
+                    taskState = EntityTaskStatus.Done;
+                    break;
+                default:
+                    return BadRequest();
+
+            }
+
+            await _taskService.ChangeTaskState(id, taskState);
+
+            return Ok();
         }
     }
 }
