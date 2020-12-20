@@ -78,6 +78,11 @@ body {
 .todo-card-body{
     padding: 10px 5px 5px 5px
 }
+
+
+.todo-card-body ul{
+    min-height: 100px;
+}
 .todo-card {
     background-color: white;
     padding: 10px;   
