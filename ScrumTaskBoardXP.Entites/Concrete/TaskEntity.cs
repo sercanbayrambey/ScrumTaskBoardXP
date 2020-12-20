@@ -18,5 +18,11 @@ namespace ScrumTaskBoardXP.Entites.Concrete
         public int? UserId { get; set; }
 
 
+        public TaskEntity()
+        {
+            Status = EntityTaskStatus.Todo;
+        }
+
+
     }
 }

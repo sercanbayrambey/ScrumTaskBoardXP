@@ -18,7 +18,7 @@ namespace ScrumTaskBoardXP.Data.Dtos
         public EntityTaskStatus Status { get; set; }
         public ICollection<TaskTodosEntity> TaskTodos { get; set; }
         public UserEntity User { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
     }
 }

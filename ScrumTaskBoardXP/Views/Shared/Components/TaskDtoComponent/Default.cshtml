@@ -1,0 +1,114 @@
+﻿@model TaskDto
+@{
+    Layout = null;
+}
+
+<form class="border border-dark p-4" method="post" asp-action="Add" asp-controller="Task">
+    <div class="row text-center">
+        <div class="col-sm-4">
+            <h1>SB Software</h1>
+        </div>
+        <div class="col-sm-4">
+            <h3 class="bg-dark text-center text-white p-4">TEKNIK KART</h3>
+        </div>
+        <div class="col-sm-4">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Tarih:</th>
+                    <td><input type="text" class="form-control" asp-for="@Model.DateAdded" disabled value="@DateTime.Now" /></td>
+                </tr>
+                <tr>
+                    <th>Kart No:</th>
+                    <td><input type="text"  value="@Model.Id" disabled class="form-control" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table table-bordered">
+                <tr>
+                   
+                    <th>Proje No/Adı:</th>
+                    <td> <span asp-validation-for="Name" class="text-danger"></span> <input type="text" class="form-control" asp-for="Name" value="" /></td>
+                </tr>
+                <tr>
+                    <th>Teknik Uzman:</th>
+                    <td><span asp-validation-for="UserId" class="text-danger"></span><input type="text" data-val="false" class="form-control" asp-for="UserId" /></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-6">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Tahmini Süre:</th>
+                    <td><span asp-validation-for="EstimatedTime" class="text-danger"></span><input type="text" class="form-control" asp-for="EstimatedTime" value="@DateTime.Now" /></td>
+                </tr>
+                <tr>
+                    <th>Gerçekleşen Süre:</th>
+                    <td>@(Model.Id>0 ? Model.ActualTime.ToShortTimeString() : "")</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="jobDescription" class="float-left"><strong>İşin Açıklaması:</strong></label>
+                <textarea class="form-control" style="min-height: 200px" asp-for="Description" ></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="jobDescription" class="float-left"><strong>Notlar:</strong></label>
+                <textarea class="form-control" style="min-height: 100px" asp-for="Notes"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <label class="float-left"><strong>İş Takibi:</strong></label>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Durum</th>
+                        <th>Yapılacak İş</th>
+                        <th>Açıklama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Görevi Ekle</button>
+    </div>
+</form>

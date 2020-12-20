@@ -34,7 +34,8 @@ namespace ScrumTaskBoardXP.Controllers
                 DoneTasks = dto.Where(I => I.Status == EntityTaskStatus.Done).ToList(),
                 InProgressTasks = dto.Where(I => I.Status == EntityTaskStatus.InProgress).ToList(),
                 InReviewTasks = dto.Where(I => I.Status == EntityTaskStatus.InReview).ToList(),
-                TodoTasks = dto.Where(I => I.Status == EntityTaskStatus.Todo).ToList()
+                TodoTasks = dto.Where(I => I.Status == EntityTaskStatus.Todo).ToList(),
+                TaskDto = new TaskDto()
             };
             return View(tasksViewModel);
         }

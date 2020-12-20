@@ -12,5 +12,6 @@ namespace ScrumTaskBoardXP.Web.Models
         public List<TaskDto> InProgressTasks { get; set; }
         public List<TaskDto> InReviewTasks { get; set; }
         public List<TaskDto> DoneTasks { get; set; }
+        public TaskDto TaskDto { get; set; }
     }
 }
