@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ScrumTaskBoardXP.Data.Configuration;
 using ScrumTaskBoardXP.Entites.Concrete;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ namespace ScrumTaskBoardXP.Data
         {
             optionsBuilder.UseSqlServer(@"Server=SERCAN;Database=ScrumTaskBoardXP;Integrated Security=true;");
             base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new TaskTodosEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new TaskEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
         }
 
         public DbSet<TaskEntity> Tasks{ get; set; }

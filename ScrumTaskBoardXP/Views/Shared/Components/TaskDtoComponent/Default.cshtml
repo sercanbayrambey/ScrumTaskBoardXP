@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <th>Kart No:</th>
-                    <td><input type="text"  value="@Model.Id" disabled class="form-control" /></td>
+                    <td><input type="text" value="@Model.Id" disabled class="form-control" /></td>
                 </tr>
             </table>
         </div>
@@ -39,8 +39,9 @@
                 </tr>
                 <tr>
                     <th>Durum:</th>
-                    <td><span asp-validation-for="Status" class="text-danger"></span>
-                    <select  class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EntityTaskStatus>()"></select>
+                    <td>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                        <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EntityTaskStatus>()"></select>
                     </td>
                 </tr>
             </table>
@@ -65,7 +66,7 @@
         <div class="col-12">
             <div class="form-group">
                 <label for="jobDescription" class="float-left"><strong>İşin Açıklaması:</strong></label>
-                <textarea class="form-control" style="min-height: 200px" asp-for="Description" ></textarea>
+                <textarea class="form-control" style="min-height: 200px" asp-for="Description"></textarea>
             </div>
         </div>
     </div>
@@ -79,7 +80,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row @(isEdit ? "" : "d-none")">
         <div class="col-12">
             <label class="float-left"><strong>İş Takibi:</strong></label>
             <table class="table table-bordered table-hover">
@@ -113,9 +114,47 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="col-12 border border-secondary">
+            <h4 class="my-2 ml-3">Yapılacak İş Ekle</h4>
+            <hr />
+            <div id="taskTodosForm" class="row  p-4 ">
+                <input type="hidden" id="taskId" value="@Model.Id" />
+                <input type="hidden" id="taskTodoId" value="" />
+
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Yapılacak İş</label>
+                        <input id="name" type="text" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Açıklama</label>
+                        <input id="description" type="text" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="form-group">
+                        <label>Durum</label>
+                        <select class="form-control" required name="status" asp-items="Html.GetEnumSelectList<TaskTodoStatus>()"></select>
+                    </div>
+                </div>
+
+                <div class="col-2 align-self-center">
+                    <div class="form-group">
+                        <a id="btnSubmit" class="btn btn-success btn-AddTaskTodo mt-4 text-white" style="cursor: pointer">Yapılacak İşi Ekle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" >Kaydet</button>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
     </div>
 </form>
+
+

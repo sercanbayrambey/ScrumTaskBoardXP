@@ -107,3 +107,7 @@ body {
 .modal-task-details .modal-header{
     display: block !important;
 }
+
+textarea.task-description{
+    background-color: white!important;
+}

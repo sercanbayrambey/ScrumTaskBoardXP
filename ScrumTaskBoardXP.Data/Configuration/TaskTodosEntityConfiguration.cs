@@ -13,6 +13,7 @@ namespace ScrumTaskBoardXP.Data.Configuration
         {
             builder.HasKey(I => I.Id);
             builder.HasOne(I => I.Task).WithMany(I => I.TaskTodos).HasForeignKey(I => I.TaskId);
+            builder.Property(I => I.Name).HasMaxLength(64);
         }
     }
 }
