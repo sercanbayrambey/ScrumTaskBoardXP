@@ -43,24 +43,24 @@ namespace ScrumTaskBoardXP.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Update (TaskDto taskDto)
+        public IActionResult Update(TaskDto taskDto)
         {
             if (taskDto == null)
                 return NotFound();
-            /*            if (ModelState.IsValid)
-                        {
-
-                        }*/
-
-            _taskService.Update(_mapper.Map<TaskEntity>(taskDto));
-            return RedirectToAction("Update", new { id = taskDto.Id });
+            if (ModelState.IsValid)
+            {
+                _taskService.Update(_mapper.Map<TaskEntity>(taskDto));
+                return RedirectToAction("Update", new { id = taskDto.Id });
+            }
+            else
+                return View(taskDto);
         }
 
 
         [HttpPost]
         public async Task<IActionResult> ChangeTaskState(int id, string newState)
         {
-            if (id<0)
+            if (id < 0)
                 return BadRequest();
             EntityTaskStatus taskState = new EntityTaskStatus();
             switch (newState)
