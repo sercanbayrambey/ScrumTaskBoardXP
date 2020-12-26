@@ -26,7 +26,6 @@ namespace ScrumTaskBoardXP.Web.Controllers
         public IActionResult Add(TaskDto taskDto)
         {
             var taskEntity = _mapper.Map<TaskEntity>(taskDto);
-            taskEntity.DateAdded = DateTime.Now;
             _taskService.Add(taskEntity);
             return RedirectToAction("Index", "Home");
 
@@ -49,7 +48,11 @@ namespace ScrumTaskBoardXP.Web.Controllers
                 return NotFound();
             if (ModelState.IsValid)
             {
-                _taskService.Update(_mapper.Map<TaskEntity>(taskDto));
+                var taskToUpdate = _taskService.GetById(taskDto.Id);
+                if (taskToUpdate == null)
+                    return NotFound();
+                taskDto.DateAdded = taskToUpdate.DateAdded;
+                _taskService.Update(_mapper.Map(taskDto, taskToUpdate));
                 return RedirectToAction("Update", new { id = taskDto.Id });
             }
             else

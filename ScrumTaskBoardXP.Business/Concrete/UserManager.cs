@@ -60,7 +60,6 @@ namespace ScrumTaskBoardXP.Business.Concrete
 
             user = new UserEntity()
             {
-                DateAdded = DateTime.Now,
                 Email = registerDto.Email,
                 Name = registerDto.Name,
                 PasswordSha1 = SHA1.Generate(registerDto.Password)
