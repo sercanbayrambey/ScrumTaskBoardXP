@@ -81,14 +81,14 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary @(isEdit ? "d-none" : "")" data-dismiss="modal">Kapat</button>
-            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle mr-2"></i>Kaydet</button>
         </div>
     </form>
 
     <div class="row @(isEdit ? "" : "d-none")">
         <div class="col-12">
             <label class="float-left"><strong>İş Takibi:</strong></label>
-            <table id="taskTodoTable" class="table table-bordered table-hover">
+            <table id="taskTodoTable" class="table table-bordered table-hover table-responsive-sm">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -107,34 +107,34 @@
         <div class="col-12 border border-secondary">
             <h4 class="my-2 ml-3">Yapılacak İş Ekle</h4>
             <hr />
-            <div class="btn btn-success btn-sm  ml-2" id="btnSwitchAddForm">Yapılacak İş Ekle</div>
+            <div class="btn btn-success btn-sm  ml-2" id="btnSwitchAddForm"><i class="fas fa-plus-circle mr-2"></i>Yapılacak İş Ekle</div>
             <div asp-validation-summary="All" class="text-danger"></div>
             <div id="taskTodosForm" class="row  p-4 ">
                 <input type="hidden" id="taskId" value="@Model.Id" />
                 <input type="hidden" id="taskTodoId" value="" />
 
-                <div class="col-3">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label>Yapılacak İş</label>
                         <input id="name" type="text" class="form-control" required />
                     </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-sm-4">
                     <div class="form-group">
                         <label>Açıklama</label>
                         <input id="description" type="text" class="form-control" required />
                     </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label>Durum</label>
                         <select class="form-control" id="status" required name="status" asp-items="Html.GetEnumSelectList<TaskTodoStatus>()"></select>
                     </div>
                 </div>
 
-                <div class="col-2 align-self-center">
+                <div class="col-sm-2 align-self-center">
                     <div class="form-group">
                         <a id="btnSubmit" class="btn btn-success btn-AddTaskTodo mt-4 text-white" style="cursor: pointer">Yapılacak İşi Ekle</a>
                     </div>

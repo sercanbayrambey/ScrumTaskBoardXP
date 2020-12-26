@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ScrumTaskBoardXP</title>
+    <title>@ViewData["Title"] - Frello</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/491d9f4c01.js" crossorigin="anonymous"></script>
     <link href="~/lib/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/lib/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="~/lib/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" />
@@ -14,7 +15,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ScrumTaskBoardXP</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Frello</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -33,10 +34,10 @@
                         else
                         {
                             <li class="nav-item">
-                                <span class="nav-link text-dark">Hoş geldin, <strong>@User.Claims.FirstOrDefault(I => I.Type.Equals("FullName")).Value</strong> </span>
+                                <span class="nav-link text-dark"><i class="fas fa-hand-paper mr-2"></i>Hoş geldin, <strong>@User.Claims.FirstOrDefault(I => I.Type.Equals("FullName")).Value</strong> </span>
                             </li>
                             <li class="nav-item ml-auto">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Çıkış Yap</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout"><i class="fas fa-sign-out-alt mr-2"></i>Çıkış Yap</a>
                             </li>
                         }
                     </ul>
@@ -52,7 +53,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - ScrumTaskBoardXP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - Frello - <a href="https://www.linkedin.com/in/sercanbayrambey/" target="_blank">Sercan Bayrambey</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
