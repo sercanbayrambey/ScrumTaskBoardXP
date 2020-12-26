@@ -29,9 +29,10 @@ namespace ScrumTaskBoardXP.Business.Extensions
             services.AddScoped<ITaskService, TaskManager>();
             services.AddScoped<ITaskTodosService, TaskTodosManager>();
             services.AddScoped<IUserService, UserManager>();
-
+            
             services.AddTransient<IValidator<TaskDto>, TaskDtoValidator>();
             services.AddTransient<IValidator<TaskTodosDto>, TaskTodoDtoValidator>();
+            services.AddTransient<IValidator<UserRegisterDto>, UserRegisterDtoValidator>();
         }
 
         public static IServiceCollection AddAutomapperConfiguration(this IServiceCollection services)

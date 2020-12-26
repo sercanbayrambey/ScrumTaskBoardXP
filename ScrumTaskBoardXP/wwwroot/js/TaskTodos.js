@@ -2,9 +2,12 @@
 
 $(document).ready(function () {
     GetTaskTodos();
+    SwitchAddForm();
 })
 
-
+$("#btnSwitchAddForm").click(function () {
+    SwitchAddForm();
+})
 
 $("#taskTodosForm").on('click', ".btn-updateTaskTodo", function () {
     var btn = $(this);
@@ -91,7 +94,8 @@ function ParseTableForTaskTodos(data) {
 
     for (var i = 0; i < data.length; i++) {
         var status = data[i]['status'] == 0 ? "Yapılacak" : "Yapıldı";
-        tableBody.append($("<tr><td>" + data[i]['id'] + "</td><td>" + new Date(data[i]['dateAdded']).toLocaleString() +"</td ><td>" + data[i]['name'] + "</td><td>" + data[i]['description'] + "</td><td value='" + data[i]['status'] + "'>" + status +  "</td><td>" + '<a class="btn btn-warning" onclick="SwitchEditForm(this);">Düzenle</a> <a class="btn btn-danger" onClick="DeleteTaskTodo(' + data[i]['id'] + ',this)">Sil</a>' + "</td></tr>"))
+        var description = data[i]['description'] == null ? "" : data[i]['description'];
+        tableBody.append($("<tr><td>" + data[i]['id'] + "</td><td>" + new Date(data[i]['dateAdded']).toLocaleString() + "</td ><td>" + data[i]['name'] + "</td><td>" + description + "</td><td value='" + data[i]['status'] + "'>" + status + "</td><td>" + '<a class="btn btn-warning" onclick="SwitchEditForm(this);">Düzenle</a> <a class="btn btn-danger" onClick="DeleteTaskTodo(' + data[i]['id'] + ',this)">Sil</a>' + "</td></tr>"))
     }
 
 }
@@ -141,7 +145,7 @@ function SwitchEditForm(sender) {
     $("#btnSwitchAddForm").show();
     $("#taskTodosForm #name").val(tr.children()[2].innerText)
     $("#taskTodosForm #description").val(tr.children()[3].innerText)
-    $("#taskTodosForm #status").val(tr.children()[2].getAttribute("value"))
+    $("#taskTodosForm #status").val(tr.children()[4].getAttribute("value"))
     $("#taskTodosForm #taskTodoId").val(tr.children()[0].innerText)
 
     $("#taskTodosForm #btnSubmit").removeClass("btn-success btn-AddTaskTodo").addClass("btn-warning btn-updateTaskTodo");

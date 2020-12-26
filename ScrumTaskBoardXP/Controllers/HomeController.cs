@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.Extensions.Logging;
 using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
@@ -14,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ITaskService _taskService;

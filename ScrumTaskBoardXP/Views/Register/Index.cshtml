@@ -1,0 +1,39 @@
+﻿@model UserRegisterDto
+@{
+    ViewData["Title"] = "Kayıt Ol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="text-center">
+        <h1 class="align-self-center my-2">Sisteme Giriş</h1>
+        <hr />
+    </div>
+
+    <form class="w-75 shadow p-4 my-2 mx-auto" method="post" asp-action="Register">
+        <div class="form-group">
+            <label>E-Posta</label>
+            <input type="email" required asp-for="Email" class="form-control" aria-describedby="emailHelp" placeholder="E-Posta adresiniz...">
+            <small id="emailHelp" class="form-text text-muted">Varsayılan: admin</small>
+        </div>
+
+        <div class="form-group">
+            <label>Ad Soyad</label>
+            <input type="text" required asp-for="Name" class="form-control" aria-describedby="emailHelp" placeholder="Adınız soyadınız...">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" required asp-for="Password" class="form-control" placeholder="Şifre...">
+            <small id="emailHelp" class="form-text text-muted">Varsayılan: admin</small>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" asp-for="Remember" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Beni Hatırla</label>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <p>Hesabınız var mı? <a asp-action="Index" asp-controller="Login" class="btn-link">Giriş yapın.</a></p>
+        <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+    </form>
+
+</div>
+
