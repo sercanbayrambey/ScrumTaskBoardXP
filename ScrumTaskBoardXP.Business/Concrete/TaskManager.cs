@@ -1,5 +1,7 @@
-﻿using ScrumTaskBoardXP.Business.Abstract;
+﻿using AutoMapper;
+using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Abstract;
+using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
 using ScrumTaskBoardXP.Entites.Enums;
 using System;
@@ -12,9 +14,11 @@ namespace ScrumTaskBoardXP.Business.Concrete
     public class TaskManager : GenericManager<TaskEntity>, ITaskService
     {
         private readonly ITaskDAL _taskDAL;
-        public TaskManager(ITaskDAL taskDAL) : base(taskDAL)
+        private readonly IMapper _mapper;
+        public TaskManager(ITaskDAL taskDAL, IMapper mapper) : base(taskDAL)
         {
             _taskDAL = taskDAL;
+            _mapper = mapper;
         }
 
         public async Task ChangeTaskState(int taskId, EntityTaskStatus newStatus)
@@ -28,6 +32,9 @@ namespace ScrumTaskBoardXP.Business.Concrete
 
         }
 
-     
+        public async Task<List<TaskDto>> GetAllWithUser()
+        {
+            return _mapper.Map<List<TaskDto>>(await _taskDAL.GetAllWithUser());
+        }
     }
 }

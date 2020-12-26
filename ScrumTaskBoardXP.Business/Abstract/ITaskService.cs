@@ -11,5 +11,6 @@ namespace ScrumTaskBoardXP.Business.Abstract
     public interface ITaskService : IGenericService<TaskEntity>
     {
         Task ChangeTaskState(int taskId, EntityTaskStatus newStatus);
+        Task<List<TaskDto>> GetAllWithUser();
     }
 }

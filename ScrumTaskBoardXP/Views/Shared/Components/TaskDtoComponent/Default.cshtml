@@ -3,8 +3,7 @@
     Layout = null;
     bool isEdit = Model.Id > 0;
 }
-<div class="border border-dark p-4">
-
+<div class="container border border-dark p-4">
     <form method="post" asp-action="@(isEdit ? "Update" : "Add")" asp-controller="Task">
         <div class="row text-center">
             <div class="col-sm-4">
@@ -17,7 +16,7 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>Tarih:</th>
-                        <td><input type="text" class="form-control" asp-for="@Model.DateAdded" disabled value="@(!isEdit ? DateTime.Now : Model.DateAdded)" /></td>
+                        <td><input type="text" class="form-control" disabled value="@(!isEdit ? DateTime.Now : Model.DateAdded)" /></td>
                     </tr>
                     <tr>
                         <th>Kart No:</th>
@@ -36,7 +35,7 @@
                     </tr>
                     <tr>
                         <th>Teknik Uzman:</th>
-                        <td><span asp-validation-for="UserId" class="text-danger"></span><input type="text" data-val="false" class="form-control" asp-for="UserId" /></td>
+                        <td><span asp-validation-for="UserId" class="text-danger"></span><select class="form-control" asp-for="UserId" asp-items="ViewBag.UsersList"></select></td>
                     </tr>
                     <tr>
                         <th>Durum:</th>

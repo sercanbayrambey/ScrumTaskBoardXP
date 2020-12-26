@@ -27,6 +27,11 @@
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
                                     <p>@item.Name</p>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
+                                    @if (item.User != null)
+                                    {
+                                        var nameArray = item.User.Name.Split(null); 
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}",nameArray[0].First(), (nameArray.Length>1 ? nameArray[1].First().ToString() : ""))</div>
+                                    }
                                 </div>
 
                                 <div class="modal fade modal-taskdetails" id="taskDetailModal-@item.Id" tabindex="-1" role="dialog" aria-labelledby="taskDetailModal" aria-hidden="true">
@@ -52,7 +57,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <label><strong>Açıklama</strong></label>
-                                                <textarea disabled rows="7"  class="form-control task-description">@item.Description</textarea>
+                                                <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
                                                 <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id">Sil</a>
@@ -86,6 +91,11 @@
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
                                     <p>@item.Name</p>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
+                                    @if (item.User != null)
+                                    {
+                                        var nameArray = item.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                    }
                                 </div>
 
 
@@ -146,6 +156,11 @@
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
                                     <p>@item.Name</p>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
+                                    @if (item.User != null)
+                                    {
+                                        var nameArray = item.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                    }
                                 </div>
 
 
@@ -208,6 +223,11 @@
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
                                     <p>@item.Name</p>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
+                                    @if (item.User != null)
+                                    {
+                                        var nameArray = item.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                    }
                                 </div>
 
 
@@ -299,6 +319,10 @@
                 }
             }).disableSelection();
         });
+
+        $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+        })
 
 
     </script>

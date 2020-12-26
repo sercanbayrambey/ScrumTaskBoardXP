@@ -23,6 +23,15 @@ namespace ScrumTaskBoardXP.Web.Controllers
                 return RedirectToAction("Index", "Home");
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
+
+            await _userService.Logout();
+            return RedirectToAction("Index", "Home");
+        }
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)

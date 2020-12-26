@@ -29,9 +29,9 @@ namespace ScrumTaskBoardXP.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var dto = _mapper.Map<List<TaskDto>>(_taskService.GetAll());
+            var dto = await _taskService.GetAllWithUser();
             TasksViewModel tasksViewModel = new TasksViewModel
             {
                 DoneTasks = dto.Where(I => I.Status == EntityTaskStatus.Done).ToList(),

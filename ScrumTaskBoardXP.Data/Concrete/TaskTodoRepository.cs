@@ -12,7 +12,8 @@ namespace ScrumTaskBoardXP.Data.Concrete
 {
     public class TaskTodoRepository : BaseGenericRepository<TaskTodosEntity>, ITaskTodosDAL
     {
-       private readonly ScrumTaskBoardXPDBContext _context;
+
+        private readonly ScrumTaskBoardXPDBContext _context;
 
         public TaskTodoRepository(ScrumTaskBoardXPDBContext context)
         {
