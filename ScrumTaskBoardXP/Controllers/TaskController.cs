@@ -5,8 +5,6 @@ using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
 using ScrumTaskBoardXP.Entites.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Web.Controllers
@@ -22,11 +20,11 @@ namespace ScrumTaskBoardXP.Web.Controllers
             _taskService = taskService;
         }
 
-
         [HttpPost]
         public IActionResult Add(TaskDto taskDto)
         {
             var taskEntity = _mapper.Map<TaskEntity>(taskDto);
+            taskEntity.DateAdded = DateTime.Now;
             _taskService.Add(taskEntity);
             return RedirectToAction("Index", "Home");
 
@@ -85,6 +83,15 @@ namespace ScrumTaskBoardXP.Web.Controllers
             await _taskService.ChangeTaskState(id, taskState);
 
             return Ok();
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var taskToDelete = _taskService.GetById(id);
+            if (taskToDelete == null)
+                return BadRequest();
+            _taskService.Delete(taskToDelete);
+            return RedirectToAction("Index","Home");
         }
     }
 }

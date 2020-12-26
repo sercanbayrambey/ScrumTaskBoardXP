@@ -6,6 +6,7 @@ using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Business.Concrete;
 using ScrumTaskBoardXP.Business.Mapping;
 using ScrumTaskBoardXP.Business.Validations;
+using ScrumTaskBoardXP.Data;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Data.Concrete;
 using ScrumTaskBoardXP.Data.Dtos;
@@ -19,6 +20,8 @@ namespace ScrumTaskBoardXP.Business.Extensions
     {
         public static void AddDIScopes(this IServiceCollection services)
         {
+            services.AddScoped<ScrumTaskBoardXPDBContext>();
+
             services.AddScoped<ITaskDAL, TaskRepository>();
             services.AddScoped<ITaskTodosDAL, TaskTodoRepository>();
             services.AddScoped<IUserDAL, UserRepository>();
@@ -28,6 +31,7 @@ namespace ScrumTaskBoardXP.Business.Extensions
             services.AddScoped<IUserService, UserManager>();
 
             services.AddTransient<IValidator<TaskDto>, TaskDtoValidator>();
+            services.AddTransient<IValidator<TaskTodosDto>, TaskTodoDtoValidator>();
         }
 
         public static IServiceCollection AddAutomapperConfiguration(this IServiceCollection services)

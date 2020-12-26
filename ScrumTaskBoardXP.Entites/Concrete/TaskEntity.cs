@@ -7,6 +7,7 @@ namespace ScrumTaskBoardXP.Entites.Concrete
 {
     public class TaskEntity : EntityBase<int>
     {
+
         public string Name { get; set; }
         public DateTime EstimatedTime { get; set; }
         public DateTime ActualTime { get; set; }

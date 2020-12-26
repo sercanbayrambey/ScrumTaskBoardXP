@@ -12,6 +12,7 @@ namespace ScrumTaskBoardXP.Business.Mapping
         public MapProfile()
         {
             CreateMap<TaskEntity, TaskDto>().ReverseMap();
+            CreateMap<TaskTodosEntity, TaskTodosDto>().ReverseMap();
         }
     }
 }

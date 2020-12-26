@@ -3,114 +3,104 @@
     Layout = null;
     bool isEdit = Model.Id > 0;
 }
+<div class="border border-dark p-4">
 
-<form class="border border-dark p-4" method="post" asp-action="@(isEdit ? "Update" : "Add")" asp-controller="Task">
-    <div class="row text-center">
-        <div class="col-sm-4">
-            <h1>SB Software</h1>
-        </div>
-        <div class="col-sm-4">
-            <h3 class="bg-dark text-center text-white p-4">TEKNIK KART</h3>
-        </div>
-        <div class="col-sm-4">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Tarih:</th>
-                    <td><input type="text" class="form-control" asp-for="@Model.DateAdded" disabled value="@(!isEdit ? DateTime.Now : Model.DateAdded)" /></td>
-                </tr>
-                <tr>
-                    <th>Kart No:</th>
-                    <td><input type="text" value="@Model.Id" disabled class="form-control" /></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <table class="table table-bordered">
-                <tr>
-
-                    <th>Proje No/Adı:</th>
-                    <td> <span asp-validation-for="Name" class="text-danger"></span> <input type="text" class="form-control" asp-for="Name" /></td>
-                </tr>
-                <tr>
-                    <th>Teknik Uzman:</th>
-                    <td><span asp-validation-for="UserId" class="text-danger"></span><input type="text" data-val="false" class="form-control" asp-for="UserId" /></td>
-                </tr>
-                <tr>
-                    <th>Durum:</th>
-                    <td>
-                        <span asp-validation-for="Status" class="text-danger"></span>
-                        <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EntityTaskStatus>()"></select>
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="col-sm-6">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Tahmini Süre:</th>
-                    <td><span asp-validation-for="EstimatedTime" class="text-danger"></span><input type="text" class="form-control" asp-for="EstimatedTime" value="@DateTime.Now" /></td>
-                </tr>
-                <tr>
-                    <th>Gerçekleşen Süre:</th>
-                    <td>@(Model.Id>0 ? Model.ActualTime.ToShortTimeString() : "")</td>
-                </tr>
-            </table>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group">
-                <label for="jobDescription" class="float-left"><strong>İşin Açıklaması:</strong></label>
-                <textarea class="form-control" style="min-height: 200px" asp-for="Description"></textarea>
+    <form method="post" asp-action="@(isEdit ? "Update" : "Add")" asp-controller="Task">
+        <div class="row text-center">
+            <div class="col-sm-4">
+                <h1>SB Software</h1>
+            </div>
+            <div class="col-sm-4">
+                <h3 class="bg-dark text-center text-white p-4">TEKNIK KART</h3>
+            </div>
+            <div class="col-sm-4">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Tarih:</th>
+                        <td><input type="text" class="form-control" asp-for="@Model.DateAdded" disabled value="@(!isEdit ? DateTime.Now : Model.DateAdded)" /></td>
+                    </tr>
+                    <tr>
+                        <th>Kart No:</th>
+                        <td><input type="text" value="@Model.Id" disabled class="form-control" /></td>
+                    </tr>
+                </table>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table table-bordered">
+                    <tr>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group">
-                <label for="jobDescription" class="float-left"><strong>Notlar:</strong></label>
-                <textarea class="form-control" style="min-height: 100px" asp-for="Notes"></textarea>
+                        <th>Proje No/Adı:</th>
+                        <td> <span asp-validation-for="Name" class="text-danger"></span> <input type="text" class="form-control" asp-for="Name" /></td>
+                    </tr>
+                    <tr>
+                        <th>Teknik Uzman:</th>
+                        <td><span asp-validation-for="UserId" class="text-danger"></span><input type="text" data-val="false" class="form-control" asp-for="UserId" /></td>
+                    </tr>
+                    <tr>
+                        <th>Durum:</th>
+                        <td>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                            <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EntityTaskStatus>()"></select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-sm-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Tahmini Süre:</th>
+                        <td><span asp-validation-for="EstimatedTime" class="text-danger"></span><input type="text" class="form-control" asp-for="EstimatedTime" value="@DateTime.Now" /></td>
+                    </tr>
+                    <tr>
+                        <th>Gerçekleşen Süre:</th>
+                        <td>@(Model.Id>0 ? Model.ActualTime.ToShortTimeString() : "")</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="jobDescription" class="float-left"><strong>İşin Açıklaması:</strong></label>
+                    <textarea class="form-control" style="min-height: 200px" asp-for="Description"></textarea>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="jobDescription" class="float-left"><strong>Notlar:</strong></label>
+                    <textarea class="form-control" style="min-height: 100px" asp-for="Notes"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary @(isEdit ? "d-none" : "")" data-dismiss="modal">Kapat</button>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
 
     <div class="row @(isEdit ? "" : "d-none")">
         <div class="col-12">
             <label class="float-left"><strong>İş Takibi:</strong></label>
-            <table class="table table-bordered table-hover">
+            <table id="taskTodoTable" class="table table-bordered table-hover">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Tarih</th>
-                        <th>Durum</th>
                         <th>Yapılacak İş</th>
                         <th>Açıklama</th>
+                        <th>Durum</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -118,6 +108,7 @@
         <div class="col-12 border border-secondary">
             <h4 class="my-2 ml-3">Yapılacak İş Ekle</h4>
             <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div id="taskTodosForm" class="row  p-4 ">
                 <input type="hidden" id="taskId" value="@Model.Id" />
                 <input type="hidden" id="taskTodoId" value="" />
@@ -139,7 +130,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label>Durum</label>
-                        <select class="form-control" required name="status" asp-items="Html.GetEnumSelectList<TaskTodoStatus>()"></select>
+                        <select class="form-control" id="status" required name="status" asp-items="Html.GetEnumSelectList<TaskTodoStatus>()"></select>
                     </div>
                 </div>
 
@@ -151,10 +142,7 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Kaydet</button>
-    </div>
-</form>
+</div>
+
 
 

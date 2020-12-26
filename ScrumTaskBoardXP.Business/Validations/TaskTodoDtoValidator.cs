@@ -6,11 +6,11 @@ using System.Text;
 
 namespace ScrumTaskBoardXP.Business.Validations
 {
-    public class TaskDtoValidator : AbstractValidator<TaskDto>
+    public class TaskTodoDtoValidator : AbstractValidator<TaskTodosDto>
     {
-        public TaskDtoValidator()
+        public TaskTodoDtoValidator()
         {
-            RuleFor(I => I.Name).NotEmpty().WithMessage("Isim kısmı zorunludur.").MaximumLength(200);
+            RuleFor(I => I.Name).NotEmpty().WithMessage("Görev ismi boş geçilemez.").MaximumLength(64);
             RuleFor(I => I.Status).NotNull().WithMessage("Görev durumu boş geçilemez.");
         }
     }
