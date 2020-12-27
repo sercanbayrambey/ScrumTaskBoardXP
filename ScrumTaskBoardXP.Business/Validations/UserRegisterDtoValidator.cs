@@ -1,8 +1,5 @@
 ﻿using FluentValidation;
 using ScrumTaskBoardXP.Data.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Business.Validations
 {

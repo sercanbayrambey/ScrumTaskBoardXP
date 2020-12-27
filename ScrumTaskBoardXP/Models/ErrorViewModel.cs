@@ -1,5 +1,3 @@
-using System;
-
 namespace ScrumTaskBoardXP.Models
 {
     public class ErrorViewModel

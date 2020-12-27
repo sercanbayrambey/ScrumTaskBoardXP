@@ -2,7 +2,6 @@
 using ScrumTaskBoardXP.Entites.Enums;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Data.Dtos
 {

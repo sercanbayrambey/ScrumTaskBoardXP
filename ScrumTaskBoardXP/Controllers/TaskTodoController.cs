@@ -4,9 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Web.Controllers
@@ -26,7 +23,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(TaskTodosDto dto)
         {
-           
+
             if (dto == null)
                 return BadRequest();
 

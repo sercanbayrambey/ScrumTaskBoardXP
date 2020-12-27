@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Business.Concrete;
@@ -10,9 +9,6 @@ using ScrumTaskBoardXP.Data;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Data.Concrete;
 using ScrumTaskBoardXP.Data.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Business.Extensions
 {
@@ -29,7 +25,7 @@ namespace ScrumTaskBoardXP.Business.Extensions
             services.AddScoped<ITaskService, TaskManager>();
             services.AddScoped<ITaskTodosService, TaskTodosManager>();
             services.AddScoped<IUserService, UserManager>();
-            
+
             services.AddTransient<IValidator<TaskDto>, TaskDtoValidator>();
             services.AddTransient<IValidator<TaskTodosDto>, TaskTodoDtoValidator>();
             services.AddTransient<IValidator<UserRegisterDto>, UserRegisterDtoValidator>();

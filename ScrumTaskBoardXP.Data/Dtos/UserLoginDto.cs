@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScrumTaskBoardXP.Data.Dtos
+﻿namespace ScrumTaskBoardXP.Data.Dtos
 {
     public class UserLoginDto
     {

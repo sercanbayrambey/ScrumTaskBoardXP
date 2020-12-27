@@ -5,7 +5,6 @@ using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
 using ScrumTaskBoardXP.Entites.Enums;
-using System;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Web.Controllers
@@ -100,7 +99,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
                 return BadRequest();
             _taskService.Delete(taskToDelete);
             SuccessAlert("Silme işlemi başarılı.");
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

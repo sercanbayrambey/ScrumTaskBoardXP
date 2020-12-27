@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScrumTaskBoardXP.Business.Results
+﻿namespace ScrumTaskBoardXP.Business.Results
 {
     public interface IResult
     {

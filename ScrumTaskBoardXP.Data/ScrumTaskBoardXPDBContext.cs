@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ScrumTaskBoardXP.Data.Configuration;
 using ScrumTaskBoardXP.Entites.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Data
 {
@@ -22,7 +19,7 @@ namespace ScrumTaskBoardXP.Data
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
         }
 
-        public DbSet<TaskEntity> Tasks{ get; set; }
+        public DbSet<TaskEntity> Tasks { get; set; }
         public DbSet<TaskTodosEntity> TasksTodos { get; set; }
         public DbSet<UserEntity> Users { get; set; }
     }

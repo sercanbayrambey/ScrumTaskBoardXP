@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScrumTaskBoardXP.Business.Results
+﻿namespace ScrumTaskBoardXP.Business.Results
 {
     public class ErrorResult : Result
     {
@@ -11,12 +7,12 @@ namespace ScrumTaskBoardXP.Business.Results
 
         }
 
-        public ErrorResult(string message, bool success) : base(message,success)
+        public ErrorResult(string message, bool success) : base(message, success)
         {
 
         }
 
-        public ErrorResult(string message) : base(message,false)
+        public ErrorResult(string message) : base(message, false)
         {
 
         }

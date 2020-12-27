@@ -1,9 +1,7 @@
 ﻿using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Entites.Abstract;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Business.Concrete
 {

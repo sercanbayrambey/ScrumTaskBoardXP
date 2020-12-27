@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.HttpSys;
-using Microsoft.Extensions.Logging;
 using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Enums;
 using ScrumTaskBoardXP.Models;
 using ScrumTaskBoardXP.Web.Controllers;
 using ScrumTaskBoardXP.Web.Models;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;

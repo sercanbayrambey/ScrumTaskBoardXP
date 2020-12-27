@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ScrumTaskBoardXP.Data.Abstract;
-using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Data.Concrete

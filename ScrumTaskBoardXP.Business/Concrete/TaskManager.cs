@@ -7,7 +7,6 @@ using ScrumTaskBoardXP.Entites.Concrete;
 using ScrumTaskBoardXP.Entites.Enums;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Business.Concrete
@@ -26,7 +25,7 @@ namespace ScrumTaskBoardXP.Business.Concrete
 
         public async Task<DateTime> CalculateEstimatedTime(DateTime startedDate, UserEntity userEntity)
         {
-            return startedDate.AddHours(((double)200/userEntity.HourlyWorkRate) + GetUserActiveTaskCount(userEntity).Result*20);
+            return startedDate.AddHours(((double)200 / userEntity.HourlyWorkRate) + GetUserActiveTaskCount(userEntity).Result * 20);
         }
 
         public async Task<IResult> ChangeTaskState(int taskId, EntityTaskStatus newStatus)
@@ -48,12 +47,12 @@ namespace ScrumTaskBoardXP.Business.Concrete
         }
         public override void Add(TaskEntity table)
         {
-            if(table.UserId != null)
+            if (table.UserId != null)
             {
                 var taskUser = _userService.GetById(table.UserId.Value);
                 if (taskUser == null)
                     return;
-                var estimatedTime =  CalculateEstimatedTime(table.DateAdded, taskUser).Result;
+                var estimatedTime = CalculateEstimatedTime(table.DateAdded, taskUser).Result;
                 table.EstimatedTime = estimatedTime;
             }
 
@@ -64,7 +63,7 @@ namespace ScrumTaskBoardXP.Business.Concrete
         {
             if (table.Status == EntityTaskStatus.Done && table.ActualTime == null)
                 table.ActualTime = DateTime.Now;
-            
+
             base.Update(table);
         }
 

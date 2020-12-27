@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ScrumTaskBoardXP.Entites.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Data.Configuration
 {

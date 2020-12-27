@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ScrumTaskBoardXP.Business.Results
+﻿namespace ScrumTaskBoardXP.Business.Results
 {
     public class Result : IResult
     {
@@ -19,7 +15,7 @@ namespace ScrumTaskBoardXP.Business.Results
 
         public Result(bool success)
         {
-            Success = success;   
+            Success = success;
         }
 
         public Result(string message)

@@ -1,9 +1,7 @@
 ﻿using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Entites.Abstract;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ScrumTaskBoardXP.Data.Concrete
 {

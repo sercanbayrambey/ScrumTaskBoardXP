@@ -3,9 +3,7 @@ using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Business.Concrete
