@@ -23,11 +23,13 @@ namespace ScrumTaskBoardXP.Controllers
         private readonly ITaskService _taskService;
         private readonly ITaskTodosService _taskTodosService;
         private readonly IMapper _mapper;
-        public HomeController(ITaskService taskService, ITaskTodosService taskTodosService, IMapper mapper)
+        private readonly IUserService _userService;
+        public HomeController(ITaskService taskService, ITaskTodosService taskTodosService, IMapper mapper, IUserService userService)
         {
             _taskService = taskService;
             _taskTodosService = taskTodosService;
             _mapper = mapper;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -41,6 +43,7 @@ namespace ScrumTaskBoardXP.Controllers
                 TodoTasks = dto.Where(I => I.Status == EntityTaskStatus.Todo).ToList(),
                 TaskDto = new TaskDto()
             };
+            ViewBag.Users = _mapper.Map<List<UserDto>>(_userService.GetAll());
             return View(tasksViewModel);
         }
 

@@ -11,8 +11,8 @@ namespace ScrumTaskBoardXP.Data.Dtos
         public int Id { get; set; }
         public DateTime DateAdded { get; set; }
         public string Name { get; set; }
-        public DateTime EstimatedTime { get; set; }
-        public DateTime ActualTime { get; set; }
+        public DateTime? EstimatedTime { get; set; }
+        public DateTime? ActualTime { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
         public EntityTaskStatus Status { get; set; }

@@ -5,10 +5,24 @@
 
 <section id="main">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mt-2">
             <button type="button" class="btn btn-success my-2 float-right" data-toggle="modal" data-target="#newTaskModal">
                 <i class="fas fa-plus-square mr-2"></i>Yeni Görev Ekle
             </button>
+            <ul class="list-inline">
+                <li class="list-inline-item"><h6>Pano Üyeleri:</h6></li>
+                @if (ViewBag.Users != null)
+                {
+                    List<UserDto> Users = ViewBag.Users;
+                    foreach (var item in Users)
+                    {
+                        var nameArray = item.Name.Split(null);
+                        <li class="list-inline-item"> <div data-toggle="tooltip" data-placement="right" title="@item.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First().ToString().ToUpper(), (nameArray.Length > 1 ? nameArray[1].First().ToString().ToUpper() : ""))</div></li>
+                    }
+                }
+
+
+            </ul>
         </div>
     </div>
     <div class="row">
@@ -29,8 +43,8 @@
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
                                     @if (item.User != null)
                                     {
-                                        var nameArray = item.User.Name.Split(null); 
-                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}",nameArray[0].First(), (nameArray.Length>1 ? nameArray[1].First().ToString() : ""))</div>
+                                        var nameArray = item.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
                                     }
                                 </div>
 
@@ -321,7 +335,7 @@
         });
 
         $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip()
+            $('[data-toggle="tooltip"]').tooltip()
         })
 
 

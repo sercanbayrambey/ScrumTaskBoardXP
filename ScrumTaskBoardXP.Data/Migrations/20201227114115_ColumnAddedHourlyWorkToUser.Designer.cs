@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScrumTaskBoardXP.Data;
 
 namespace ScrumTaskBoardXP.Data.Migrations
 {
     [DbContext(typeof(ScrumTaskBoardXPDBContext))]
-    partial class ScrumTaskBoardXPDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201227114115_ColumnAddedHourlyWorkToUser")]
+    partial class ColumnAddedHourlyWorkToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace ScrumTaskBoardXP.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime?>("ActualTime")
+                    b.Property<DateTime>("ActualTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateAdded")
@@ -35,7 +37,7 @@ namespace ScrumTaskBoardXP.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("EstimatedTime")
+                    b.Property<DateTime>("EstimatedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")

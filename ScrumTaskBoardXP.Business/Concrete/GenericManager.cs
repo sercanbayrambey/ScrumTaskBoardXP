@@ -35,7 +35,7 @@ namespace ScrumTaskBoardXP.Business.Concrete
             return _entityDAL.GetById(id);
         }
 
-        public void Update(EntityTable table)
+        public virtual void Update(EntityTable table)
         {
             _entityDAL.Update(table);
         }

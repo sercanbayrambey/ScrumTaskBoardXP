@@ -51,11 +51,11 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>Tahmini Süre:</th>
-                        <td><span asp-validation-for="EstimatedTime" class="text-danger"></span><input type="text" class="form-control" asp-for="EstimatedTime" value="@DateTime.Now" /></td>
+                        <td>@Model.EstimatedTime?.ToString()</td>
                     </tr>
                     <tr>
                         <th>Gerçekleşen Süre:</th>
-                        <td>@(Model.Id>0 ? Model.ActualTime.ToShortTimeString() : "")</td>
+                        <td>@(Model.Id>0 ? Model.ActualTime?.ToString() : "")</td>
                     </tr>
                 </table>
             </div>

@@ -9,8 +9,8 @@ namespace ScrumTaskBoardXP.Entites.Concrete
     {
 
         public string Name { get; set; }
-        public DateTime EstimatedTime { get; set; }
-        public DateTime ActualTime { get; set; }
+        public DateTime? EstimatedTime { get; set; }
+        public DateTime? ActualTime { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
         public EntityTaskStatus Status{ get; set; }

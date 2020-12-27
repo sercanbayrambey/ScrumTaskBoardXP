@@ -13,5 +13,9 @@ namespace ScrumTaskBoardXP.Business.Abstract
     {
         Task<IResult> ChangeTaskState(int taskId, EntityTaskStatus newStatus);
         Task<List<TaskDto>> GetAllWithUser();
+        Task<DateTime> CalculateEstimatedTime(DateTime startedDate, UserEntity userEntity);
+
+        Task<int> GetUserActiveTaskCount(UserEntity userEntity);
+
     }
 }
