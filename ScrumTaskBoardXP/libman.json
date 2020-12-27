@@ -3,18 +3,15 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "popper.js@2.6.0",
-      "destination": "wwwroot/popper.js/",
+      "library": "notify.js@3.0.0",
+      "destination": "wwwroot/lib/notify.js/",
       "files": [
-        "umd/popper.min.js"
+        "notify.min.js"
       ]
     },
     {
-      "library": "font-awesome@5.15.1",
-      "destination": "wwwroot/font-awesome/",
-      "files": [
-        "css/all.min.css"
-      ]
+      "library": "bootstrap-notify@0.2.0",
+      "destination": "wwwroot/bootstrap-notify/"
     }
   ]
 }

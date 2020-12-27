@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Web.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseController
     {
         private readonly IUserService _userService;
         public RegisterController(IUserService userService)
@@ -28,6 +28,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
         public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
         {
             await _userService.Register(userRegisterDto);
+            Alert("Kayıt başarılı.");
             return RedirectToAction("Index", "Home");
         }
     }

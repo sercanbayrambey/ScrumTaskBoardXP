@@ -7,6 +7,7 @@ using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Enums;
 using ScrumTaskBoardXP.Models;
+using ScrumTaskBoardXP.Web.Controllers;
 using ScrumTaskBoardXP.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ using System.Threading.Tasks;
 namespace ScrumTaskBoardXP.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ITaskService _taskService;
         private readonly ITaskTodosService _taskTodosService;

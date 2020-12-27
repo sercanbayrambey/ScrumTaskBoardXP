@@ -89,6 +89,12 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #c3c3c3;
+    cursor: pointer;
+}
+
+.todo-card:hover {
+    background-color: lightgrey;
+
 }
 
 .todo-card-header{

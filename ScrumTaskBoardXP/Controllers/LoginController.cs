@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Web.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         private readonly IUserService _userService;
         public LoginController(IUserService userService)
@@ -29,6 +29,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
                 return RedirectToAction("Index");
 
             await _userService.Logout();
+            Alert("Çıkış başarılı.");
             return RedirectToAction("Index", "Home");
         }
 
@@ -37,6 +38,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
             await _userService.Login(userLoginDto);
+            Alert("Giriş başarılı.");
             return RedirectToAction("Index", "Home");
         }
     }
