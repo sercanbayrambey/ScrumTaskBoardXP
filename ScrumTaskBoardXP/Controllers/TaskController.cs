@@ -26,6 +26,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
         public IActionResult Add(TaskDto taskDto)
         {
             var taskEntity = _mapper.Map<TaskEntity>(taskDto);
+            taskEntity.DateAdded = DateTime.Now;
             _taskService.Add(taskEntity);
             SuccessAlert("Ekleme işlemi başarılı.");
             return RedirectToAction("Index", "Home");
