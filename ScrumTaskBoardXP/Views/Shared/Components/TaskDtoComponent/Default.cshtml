@@ -51,11 +51,11 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>Tahmini Süre:</th>
-                        <td>@Model.EstimatedTime?.ToString()</td>
+                        <td>@(Model.EstimatedTime.HasValue ? Model.EstimatedTime.ToString() : "Görev eklendikten sonra hesaplanacaktır." )</td>
                     </tr>
                     <tr>
                         <th>Gerçekleşen Süre:</th>
-                        <td>@(Model.Id>0 ? Model.ActualTime?.ToString() : "")</td>
+                        <td>@(Model.ActualTime.HasValue ? Model.ActualTime.ToString() : "Görev henüz bitmiş değil." )</td>
                     </tr>
                 </table>
             </div>
