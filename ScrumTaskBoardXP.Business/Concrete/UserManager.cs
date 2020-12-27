@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using ScrumTaskBoardXP.Business.Abstract;
+using ScrumTaskBoardXP.Business.Results;
 using ScrumTaskBoardXP.Business.Utilities;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
@@ -41,22 +42,24 @@ namespace ScrumTaskBoardXP.Business.Concrete
             await _httpContextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));;
         }
 
-        public async Task Login(UserLoginDto loginDto)
+        public async Task<IResult> Login(UserLoginDto loginDto)
         {
             var user = await _userDAL.GetUser(loginDto.Email, SHA1.Generate(loginDto.Password));
 
             if (user == null)
-                return;
+                return new ErrorResult("Yanlış kullanıcı adı veya şifre");
 
             await Login(user);
+
+            return new Result("Giriş başarılı.");
         }
 
-        public async Task Register(UserRegisterDto registerDto)
+        public async Task<IResult> Register(UserRegisterDto registerDto)
         {
             var user = await _userDAL.GetByEmail(registerDto.Email);
 
             if (user != null)
-                return;
+                return new ErrorResult("Bu E-Mail kullanılıyor.");
 
             user = new UserEntity()
             {
@@ -67,6 +70,8 @@ namespace ScrumTaskBoardXP.Business.Concrete
             _userDAL.Add(user);
 
             await Login(user);
+
+            return new Result("Kayıt başarılı.");
         }
 
         public async Task<UserDto> GetLoggedInUserInfo()

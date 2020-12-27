@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ScrumTaskBoardXP.Web.Controllers
 {
     [Authorize]
-    public class TaskController : Controller
+    public class TaskController : BaseController
     {
         private readonly ITaskService _taskService;
         private readonly IMapper _mapper;
@@ -27,6 +27,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
         {
             var taskEntity = _mapper.Map<TaskEntity>(taskDto);
             _taskService.Add(taskEntity);
+            SuccessAlert("Ekleme işlemi başarılı.");
             return RedirectToAction("Index", "Home");
 
         }
@@ -53,6 +54,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
                     return NotFound();
                 taskDto.DateAdded = taskToUpdate.DateAdded;
                 _taskService.Update(_mapper.Map(taskDto, taskToUpdate));
+                SuccessAlert("Güncelleme işlemi başarılı.");
                 return RedirectToAction("Update", new { id = taskDto.Id });
             }
             else
@@ -85,9 +87,11 @@ namespace ScrumTaskBoardXP.Web.Controllers
 
             }
 
-            await _taskService.ChangeTaskState(id, taskState);
-
-            return Ok();
+            var stateResult = await _taskService.ChangeTaskState(id, taskState);
+            if (stateResult.Success)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -96,6 +100,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
             if (taskToDelete == null)
                 return BadRequest();
             _taskService.Delete(taskToDelete);
+            SuccessAlert("Silme işlemi başarılı.");
             return RedirectToAction("Index","Home");
         }
     }

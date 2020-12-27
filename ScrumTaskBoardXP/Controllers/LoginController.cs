@@ -29,7 +29,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
                 return RedirectToAction("Index");
 
             await _userService.Logout();
-            Alert("Çıkış başarılı.");
+            SuccessAlert("Çıkış başarılı.");
             return RedirectToAction("Index", "Home");
         }
 
@@ -37,9 +37,17 @@ namespace ScrumTaskBoardXP.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
-            await _userService.Login(userLoginDto);
-            Alert("Giriş başarılı.");
-            return RedirectToAction("Index", "Home");
+            var loginResult = await _userService.Login(userLoginDto);
+            if (!loginResult.Success)
+            {
+                ErrorAlert(loginResult.Message);
+                return View("Index", userLoginDto);
+            }
+            else
+            {
+                SuccessAlert(loginResult.Message);
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

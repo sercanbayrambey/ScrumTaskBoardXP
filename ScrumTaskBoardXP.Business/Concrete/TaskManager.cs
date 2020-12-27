@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ScrumTaskBoardXP.Business.Abstract;
+using ScrumTaskBoardXP.Business.Results;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
@@ -21,15 +22,17 @@ namespace ScrumTaskBoardXP.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task ChangeTaskState(int taskId, EntityTaskStatus newStatus)
+        public async Task<IResult> ChangeTaskState(int taskId, EntityTaskStatus newStatus)
         {
             var taskToChange = GetById(taskId);
+
             if (taskToChange == null)
-                throw new Exception();
+                return new ErrorResult();
+
             taskToChange.Status = newStatus;
             Update(taskToChange);
-
-
+            
+            return new Result();
         }
 
         public async Task<List<TaskDto>> GetAllWithUser()

@@ -17,7 +17,7 @@ namespace ScrumTaskBoardXP.Web.Controllers
         }
         public IActionResult Index()
         {
-            if(!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated)
                 return View(new UserRegisterDto());
             else
                 return RedirectToAction("Index", "Home");
@@ -27,9 +27,17 @@ namespace ScrumTaskBoardXP.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
         {
-            await _userService.Register(userRegisterDto);
-            Alert("Kayıt başarılı.");
-            return RedirectToAction("Index", "Home");
+            var registerResult = await _userService.Register(userRegisterDto);
+            if (registerResult.Success)
+            {
+                SuccessAlert("Kayıt başarılı.");
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ErrorAlert(registerResult.Message);
+                return View("Index", userRegisterDto);
+            }
         }
     }
 }
