@@ -18,15 +18,15 @@ namespace ScrumTaskBoardXP.Business.Extensions
         {
             services.AddScoped<ScrumTaskBoardXPDBContext>();
 
-            services.AddScoped<ITaskDAL, TaskRepository>();
+            services.AddScoped<ITaskDAL, ProjectRepository>();
             services.AddScoped<ITaskTodosDAL, TaskTodoRepository>();
             services.AddScoped<IUserDAL, UserRepository>();
 
-            services.AddScoped<ITaskService, TaskManager>();
+            services.AddScoped<IProjectService, ProjectManager>();
             services.AddScoped<ITaskTodosService, TaskTodosManager>();
             services.AddScoped<IUserService, UserManager>();
 
-            services.AddTransient<IValidator<TaskDto>, TaskDtoValidator>();
+            services.AddTransient<IValidator<ProjectDto>, TaskDtoValidator>();
             services.AddTransient<IValidator<TaskTodosDto>, TaskTodoDtoValidator>();
             services.AddTransient<IValidator<UserRegisterDto>, UserRegisterDtoValidator>();
         }

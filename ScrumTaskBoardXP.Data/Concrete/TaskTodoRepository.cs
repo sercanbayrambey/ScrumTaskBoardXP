@@ -20,5 +20,10 @@ namespace ScrumTaskBoardXP.Data.Concrete
         {
             return await _context.TasksTodos.Where(I => I.TaskId == taskId).ToListAsync();
         }
+
+        public async Task<List<TaskTodosEntity>> GetAllEagerAsync()
+        {
+            return await _context.TasksTodos.Include(I => I.Task).ThenInclude(I => I.User).ToListAsync();
+        }
     }
 }

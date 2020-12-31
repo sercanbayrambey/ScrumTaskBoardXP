@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Business.Abstract
 {
-    public interface ITaskService : IGenericService<TaskEntity>
+    public interface IProjectService : IGenericService<ProjectEntity>
     {
-        Task<IResult> ChangeTaskState(int taskId, EntityTaskStatus newStatus);
-        Task<List<TaskDto>> GetAllWithUser();
+        Task<IResult> ChangeTaskState(int taskId, ProjectStatus newStatus);
+        Task<List<ProjectDto>> GetAllEagerAsync();
         Task<DateTime> CalculateEstimatedTime(DateTime startedDate, UserEntity userEntity);
 
         Task<int> GetUserActiveTaskCount(UserEntity userEntity);

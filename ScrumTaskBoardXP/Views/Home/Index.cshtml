@@ -1,4 +1,4 @@
-﻿@model TasksViewModel
+﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12 mt-2">
             <button type="button" class="btn btn-success my-2 float-right" data-toggle="modal" data-target="#newTaskModal">
-                <i class="fas fa-plus-square mr-2"></i>Yeni Görev Ekle
+                <i class="fas fa-plus-square mr-2"></i>Yeni Proje Ekle
             </button>
             <ul class="list-inline">
                 <li class="list-inline-item"><h6>Pano Üyeleri:</h6></li>
@@ -39,12 +39,13 @@
                             <li>
 
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
-                                    <p>@item.Name</p>
+                                    <div>@item.Name</div>
+                                    <div class="text-muted font-italic">@item.Task.Name</div>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
-                                    @if (item.User != null)
+                                    @if (item.Task.User != null)
                                     {
-                                        var nameArray = item.User.Name.Split(null);
-                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                        var nameArray = item.Task.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.Task.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
                                     }
                                 </div>
 
@@ -65,7 +66,10 @@
                                                         <p class="text-muted d-block"><u>Todo</u> listesinde.</p>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                        <label>Proje: <strong>@item.Task.Name</strong></label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.Task.User?.Name</strong></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,9 +78,9 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
-                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
@@ -103,12 +107,13 @@
                         {
                             <li>
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
-                                    <p>@item.Name</p>
+                                    <div>@item.Name</div>
+                                    <div class="text-muted font-italic">@item.Task.Name</div>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
-                                    @if (item.User != null)
+                                    @if (item.Task.User != null)
                                     {
-                                        var nameArray = item.User.Name.Split(null);
-                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                        var nameArray = item.Task.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.Task.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
                                     }
                                 </div>
 
@@ -131,7 +136,10 @@
                                                         <p class="text-muted d-block"><u>In Progress</u> listesinde.</p>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                        <label>Proje: <strong>@item.Task.Name</strong></label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.Task.User?.Name</strong></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,9 +148,9 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
-                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
@@ -166,14 +174,14 @@
                         @foreach (var item in Model.InReviewTasks)
                         {
                             <li>
-
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
-                                    <p>@item.Name</p>
+                                    <div>@item.Name</div>
+                                    <div class="text-muted font-italic">@item.Task.Name</div>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
-                                    @if (item.User != null)
+                                    @if (item.Task.User != null)
                                     {
-                                        var nameArray = item.User.Name.Split(null);
-                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                        var nameArray = item.Task.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.Task.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
                                     }
                                 </div>
 
@@ -196,7 +204,10 @@
                                                         <p class="text-muted d-block"><u>In Review</u> listesinde.</p>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                        <label>Proje: <strong>@item.Task.Name</strong></label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.Task.User?.Name</strong></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,9 +216,9 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
-                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
@@ -235,12 +246,13 @@
                             <li>
 
                                 <div data-toggle="modal" data-target="#taskDetailModal-@item.Id" id="@item.Id" class="todo-card">
-                                    <p>@item.Name</p>
+                                    <div>@item.Name</div>
+                                    <div class="text-muted font-italic">@item.Task.Name</div>
                                     <p class="text-muted">@item.DateAdded.ToShortDateString()</p>
-                                    @if (item.User != null)
+                                    @if (item.Task.User != null)
                                     {
-                                        var nameArray = item.User.Name.Split(null);
-                                        <div data-toggle="tooltip" data-placement="right" title="@item.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
+                                        var nameArray = item.Task.User.Name.Split(null);
+                                        <div data-toggle="tooltip" data-placement="right" title="@item.Task.User.Name" class="badge badge-pill p-2 badge-primary">@String.Format("{0}{1}", nameArray[0].First(), (nameArray.Length > 1 ? nameArray[1].First().ToString() : ""))</div>
                                     }
                                 </div>
 
@@ -263,7 +275,10 @@
                                                         <p class="text-muted d-block"><u>Done</u> listesinde.</p>
                                                     </div>
                                                     <div class="col-12">
-                                                        <label>Kime Atanmış: <strong>@item.User?.Name</strong></label>
+                                                        <label>Proje: <strong>@item.Task.Name</strong></label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label>Kime Atanmış: <strong>@item.Task.User?.Name</strong></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,9 +287,9 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" asp-action="Delete" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
-                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Task" asp-route-id="@item.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
+                                                <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
                                         </div>
                                     </div>
@@ -289,6 +304,8 @@
         </div>
 
     </div>
+
+
 
     <div class="modal fade" id="newTaskModal" tabindex="-1" role="dialog" aria-labelledby="newTaskModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -306,7 +323,40 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
 
+            <hr />
+            <h5 class="col-12">Aktif Projeler</h5>
+            <table class="col-12 table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Eklenme Tarihi</th>
+                        <th scope="col">Adı</th>
+                        <th scope="col">Kime Atanmış</th>
+                        <th>Durum</th>
+                        <th scope="col">Düzenle</th>
+                        <th scope="col">Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Projects)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.DateAdded</td>
+                            <td>@item.Name</td>
+                            <td>@item.User.Name</td>
+                            <td>@item.Status</td>
+                            <td><a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a></td>
+                            <td>     <a class="btn btn-danger float-left" onclick="return confirm('Bu projeyi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </section>
 
@@ -322,7 +372,7 @@
                     var item = ui.item;
                     var movedItemId = item.find(".todo-card").attr("id")
 
-                    $.post("/Task/ChangeTaskState", { id: movedItemId, newState: event.target.id }
+                    $.post("/TaskTodo/ChangeTaskState", { id: movedItemId, newState: event.target.id }
                     ).done(function (data) {
                         console.log("Success!!");
                     })

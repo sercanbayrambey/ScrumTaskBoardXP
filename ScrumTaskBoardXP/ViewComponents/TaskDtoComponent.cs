@@ -14,7 +14,7 @@ namespace ScrumTaskBoardXP.Web.ViewComponents
             _userService = userService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(TaskDto taskDto)
+        public async Task<IViewComponentResult> InvokeAsync(ProjectDto taskDto)
         {
             ViewBag.UsersList = new SelectList(_userService.GetAll(), "Id", "Name");
             return View(taskDto);

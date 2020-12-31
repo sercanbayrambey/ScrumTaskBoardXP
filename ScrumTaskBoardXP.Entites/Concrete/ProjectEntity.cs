@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ScrumTaskBoardXP.Entites.Concrete
 {
-    public class TaskEntity : EntityBase<int>
+    public class ProjectEntity : EntityBase<int>
     {
 
         public string Name { get; set; }
@@ -12,15 +12,15 @@ namespace ScrumTaskBoardXP.Entites.Concrete
         public DateTime? ActualTime { get; set; }
         public string Description { get; set; }
         public string Notes { get; set; }
-        public EntityTaskStatus Status { get; set; }
+        public ProjectStatus Status { get; set; }
         public ICollection<TaskTodosEntity> TaskTodos { get; set; }
         public UserEntity User { get; set; }
         public int? UserId { get; set; }
 
 
-        public TaskEntity()
+        public ProjectEntity()
         {
-            Status = EntityTaskStatus.Todo;
+            Status = ProjectStatus.Todo;
         }
 
 

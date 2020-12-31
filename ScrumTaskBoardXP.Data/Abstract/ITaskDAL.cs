@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Data.Abstract
 {
-    public interface ITaskDAL : IBaseGenericDAL<TaskEntity>
+    public interface ITaskDAL : IBaseGenericDAL<ProjectEntity>
     {
-        Task<List<TaskEntity>> GetAllWithUser();
+        Task<List<ProjectEntity>> GetAllEagerAsync();
         Task<int> GetUserActiveTaskCount(UserEntity userEntity);
     }
 }

@@ -4,9 +4,9 @@ using ScrumTaskBoardXP.Entites.Concrete;
 
 namespace ScrumTaskBoardXP.Data.Configuration
 {
-    public class TaskEntityConfiguration : IEntityTypeConfiguration<TaskEntity>
+    public class ProjectEntityConfiguration : IEntityTypeConfiguration<ProjectEntity>
     {
-        public void Configure(EntityTypeBuilder<TaskEntity> builder)
+        public void Configure(EntityTypeBuilder<ProjectEntity> builder)
         {
             builder.HasKey(I => I.Id);
             builder.Property(I => I.Name).HasMaxLength(200);

@@ -1,4 +1,5 @@
-﻿using ScrumTaskBoardXP.Entites.Enums;
+﻿using ScrumTaskBoardXP.Entites.Concrete;
+using ScrumTaskBoardXP.Entites.Enums;
 using System;
 
 namespace ScrumTaskBoardXP.Data.Dtos
@@ -11,6 +12,7 @@ namespace ScrumTaskBoardXP.Data.Dtos
         public string Description { get; set; }
         public int TaskId { get; set; }
         public string Name { get; set; }
+        public ProjectEntity Task{ get; set; }
 
         public TaskTodosDto()
         {

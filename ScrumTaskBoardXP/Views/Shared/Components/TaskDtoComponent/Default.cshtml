@@ -1,10 +1,10 @@
-﻿@model TaskDto
+﻿@model ProjectDto
 @{
     Layout = null;
     bool isEdit = Model.Id > 0;
 }
 <div class="container border border-dark p-4">
-    <form method="post" asp-action="@(isEdit ? "Update" : "Add")" asp-controller="Task">
+    <form method="post" asp-action="@(isEdit ? "Update" : "Add")" asp-controller="Project">
         <div class="row text-center">
             <div class="col-sm-4">
                 <h1>SB Software</h1>
@@ -41,7 +41,7 @@
                         <th>Durum:</th>
                         <td>
                             <span asp-validation-for="Status" class="text-danger"></span>
-                            <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<EntityTaskStatus>()"></select>
+                            <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<ProjectStatus>()"></select>
                         </td>
                     </tr>
                 </table>

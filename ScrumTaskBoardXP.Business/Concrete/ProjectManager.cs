@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Business.Concrete
 {
-    public class TaskManager : GenericManager<TaskEntity>, ITaskService
+    public class ProjectManager : GenericManager<ProjectEntity>, IProjectService
     {
         private readonly ITaskDAL _taskDAL;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
-        public TaskManager(ITaskDAL taskDAL, IMapper mapper, IUserService userService) : base(taskDAL)
+        public ProjectManager(ITaskDAL taskDAL, IMapper mapper, IUserService userService) : base(taskDAL)
         {
             _taskDAL = taskDAL;
             _mapper = mapper;
@@ -28,7 +28,7 @@ namespace ScrumTaskBoardXP.Business.Concrete
             return startedDate.AddHours(((double)200 / userEntity.HourlyWorkRate) + GetUserActiveTaskCount(userEntity).Result * 20);
         }
 
-        public async Task<IResult> ChangeTaskState(int taskId, EntityTaskStatus newStatus)
+        public async Task<IResult> ChangeTaskState(int taskId, ProjectStatus newStatus)
         {
             var taskToChange = GetById(taskId);
 
@@ -41,11 +41,11 @@ namespace ScrumTaskBoardXP.Business.Concrete
             return new Result();
         }
 
-        public async Task<List<TaskDto>> GetAllWithUser()
+        public async Task<List<ProjectDto>> GetAllEagerAsync()
         {
-            return _mapper.Map<List<TaskDto>>(await _taskDAL.GetAllWithUser());
+            return _mapper.Map<List<ProjectDto>>(await _taskDAL.GetAllEagerAsync());
         }
-        public override void Add(TaskEntity table)
+        public override void Add(ProjectEntity table)
         {
             if (table.UserId != null)
             {
@@ -59,9 +59,9 @@ namespace ScrumTaskBoardXP.Business.Concrete
 
             base.Add(table);
         }
-        public override void Update(TaskEntity table)
+        public override void Update(ProjectEntity table)
         {
-            if (table.Status == EntityTaskStatus.Done && table.ActualTime == null)
+            if (table.Status == ProjectStatus.Done && table.ActualTime == null)
                 table.ActualTime = DateTime.Now;
 
             base.Update(table);

@@ -3,7 +3,7 @@ using ScrumTaskBoardXP.Data.Dtos;
 
 namespace ScrumTaskBoardXP.Business.Validations
 {
-    public class TaskDtoValidator : AbstractValidator<TaskDto>
+    public class TaskDtoValidator : AbstractValidator<ProjectDto>
     {
         public TaskDtoValidator()
         {

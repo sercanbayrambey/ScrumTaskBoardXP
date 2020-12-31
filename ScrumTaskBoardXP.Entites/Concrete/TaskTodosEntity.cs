@@ -7,7 +7,7 @@ namespace ScrumTaskBoardXP.Entites.Concrete
     {
         public TaskTodoStatus Status { get; set; }
         public string Description { get; set; }
-        public TaskEntity Task { get; set; }
+        public ProjectEntity Task { get; set; }
         public int TaskId { get; set; }
         public string Name { get; set; }
 

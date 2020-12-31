@@ -15,11 +15,11 @@ namespace ScrumTaskBoardXP.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new TaskTodosEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new TaskEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ProjectEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
         }
 
-        public DbSet<TaskEntity> Tasks { get; set; }
+        public DbSet<ProjectEntity> Projects { get; set; }
         public DbSet<TaskTodosEntity> TasksTodos { get; set; }
         public DbSet<UserEntity> Users { get; set; }
     }

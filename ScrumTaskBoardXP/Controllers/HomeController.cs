@@ -17,13 +17,13 @@ namespace ScrumTaskBoardXP.Controllers
     [Authorize]
     public class HomeController : BaseController
     {
-        private readonly ITaskService _taskService;
+        private readonly IProjectService _projectService;
         private readonly ITaskTodosService _taskTodosService;
         private readonly IMapper _mapper;
         private readonly IUserService _userService;
-        public HomeController(ITaskService taskService, ITaskTodosService taskTodosService, IMapper mapper, IUserService userService)
+        public HomeController(IProjectService projectService, ITaskTodosService taskTodosService, IMapper mapper, IUserService userService)
         {
-            _taskService = taskService;
+            _projectService = projectService;
             _taskTodosService = taskTodosService;
             _mapper = mapper;
             _userService = userService;
@@ -31,15 +31,17 @@ namespace ScrumTaskBoardXP.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var dto = await _taskService.GetAllWithUser();
-            TasksViewModel tasksViewModel = new TasksViewModel
+            var taskTodoList = await _taskTodosService.GetAllEagerAsync();
+            HomeViewModel tasksViewModel = new HomeViewModel
             {
-                DoneTasks = dto.Where(I => I.Status == EntityTaskStatus.Done).ToList(),
-                InProgressTasks = dto.Where(I => I.Status == EntityTaskStatus.InProgress).ToList(),
-                InReviewTasks = dto.Where(I => I.Status == EntityTaskStatus.InReview).ToList(),
-                TodoTasks = dto.Where(I => I.Status == EntityTaskStatus.Todo).ToList(),
-                TaskDto = new TaskDto()
+                DoneTasks = taskTodoList.Where(I => I.Status == TaskTodoStatus.Done).ToList(),
+                InProgressTasks = taskTodoList.Where(I => I.Status == TaskTodoStatus.InProgress).ToList(),
+                InReviewTasks = taskTodoList.Where(I => I.Status == TaskTodoStatus.InReview).ToList(),
+                TodoTasks = taskTodoList.Where(I => I.Status == TaskTodoStatus.Todo).ToList(),
+                TaskDto = new ProjectDto(),
+                Projects = _mapper.Map<List<ProjectDto>>(await _projectService.GetAllEagerAsync())
             };
+            
             ViewBag.Users = _mapper.Map<List<UserDto>>(_userService.GetAll());
             return View(tasksViewModel);
         }

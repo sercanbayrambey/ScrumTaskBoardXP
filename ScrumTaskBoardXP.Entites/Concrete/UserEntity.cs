@@ -7,7 +7,7 @@ namespace ScrumTaskBoardXP.Entites.Concrete
         public string Name { get; set; }
         public string Email { get; set; }
         public string PasswordSha1 { get; set; }
-        public ICollection<TaskEntity> Tasks { get; set; }
+        public ICollection<ProjectEntity> Tasks { get; set; }
         public int HourlyWorkRate { get; set; }
 
     }

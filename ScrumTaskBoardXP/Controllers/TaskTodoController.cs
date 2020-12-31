@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScrumTaskBoardXP.Business.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
+using ScrumTaskBoardXP.Entites.Enums;
 using System.Threading.Tasks;
 
 namespace ScrumTaskBoardXP.Web.Controllers
@@ -52,6 +53,39 @@ namespace ScrumTaskBoardXP.Web.Controllers
 
             _taskTodosService.Delete(todoToDelete);
             return Ok();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeTaskState(int id, string newState)
+        {
+            if (id < 0)
+                return BadRequest();
+            TaskTodoStatus taskState = new TaskTodoStatus();
+            switch (newState)
+            {
+                case "todo":
+                    taskState = TaskTodoStatus.Todo;
+                    break;
+                case "inProgress":
+                    taskState = TaskTodoStatus.InProgress;
+                    break;
+                case "review":
+                    taskState = TaskTodoStatus.InReview;
+                    break;
+                case "done":
+                    taskState = TaskTodoStatus.Done;
+                    break;
+                default:
+                    return BadRequest();
+
+            }
+
+            var stateResult = await _taskTodosService.ChangeTaskState(id, taskState);
+            if (stateResult.Success)
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [HttpPost]

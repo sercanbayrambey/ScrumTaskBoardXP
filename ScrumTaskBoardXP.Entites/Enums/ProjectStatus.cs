@@ -1,10 +1,8 @@
 ﻿namespace ScrumTaskBoardXP.Entites.Enums
 {
-    public enum EntityTaskStatus
+    public enum ProjectStatus
     {
         Todo = 0,
-        InProgress,
-        InReview,
         Done
     }
 }
