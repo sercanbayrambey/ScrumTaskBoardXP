@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ScrumTaskBoardXP.Web.Controllers
 {
     [Authorize]
-    public class TaskTodoController : Controller
+    public class TaskTodoController : BaseController
     {
         private readonly ITaskTodosService _taskTodosService;
         private readonly IMapper _mapper;
@@ -53,6 +53,17 @@ namespace ScrumTaskBoardXP.Web.Controllers
 
             _taskTodosService.Delete(todoToDelete);
             return Ok();
+        }
+
+        public async Task<IActionResult> DeleteTask(int taskId)
+        {
+            var todoToDelete = _taskTodosService.GetById(taskId);
+            if (todoToDelete == null)
+                return BadRequest();
+
+            _taskTodosService.Delete(todoToDelete);
+            SuccessAlert("Silme işlemi başarılı.");
+            return RedirectToAction("Index", "Home");
         }
 
 

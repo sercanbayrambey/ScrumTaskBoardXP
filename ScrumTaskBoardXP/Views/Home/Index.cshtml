@@ -78,7 +78,7 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="DeleteTask" asp-controller="TaskTodo" asp-route-taskId="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
                                                 <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
@@ -148,7 +148,7 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="DeleteTask" asp-controller="TaskTodo" asp-route-taskId="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
                                                 <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
@@ -216,7 +216,7 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="DeleteTask" asp-controller="TaskTodo" asp-route-taskId="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
                                                 <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
@@ -287,7 +287,7 @@
                                                 <textarea disabled rows="7" class="form-control task-description">@item.Description</textarea>
                                             </div>
                                             <div class="modal-footer d-block">
-                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
+                                                <a class="btn btn-danger float-left" onclick="return confirm('Bu görevi silmek istediğinizden emin misiniz?');" asp-action="DeleteTask" asp-controller="TaskTodo" asp-route-taskId="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a>
                                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Kapat <i class="fas fa-times ml-2"></i></button>
                                                 <a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Task.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a>
                                             </div>
@@ -347,7 +347,7 @@
                             <td>@item.Id</td>
                             <td>@item.DateAdded</td>
                             <td>@item.Name</td>
-                            <td>@item.User.Name</td>
+                            <td>@item.User?.Name</td>
                             <td>@item.Status</td>
                             <td><a class="btn btn-warning float-right" asp-action="Update" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-edit mr-2"></i>Düzenle</a></td>
                             <td>     <a class="btn btn-danger float-left" onclick="return confirm('Bu projeyi silmek istediğinizden emin misiniz?');" asp-action="Delete" asp-controller="Project" asp-route-id="@item.Id"><i class="fas fa-trash-alt mr-2"></i>Sil</a></td>

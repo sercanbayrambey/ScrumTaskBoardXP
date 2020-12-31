@@ -8,6 +8,7 @@ using ScrumTaskBoardXP.Business.Utilities;
 using ScrumTaskBoardXP.Data.Abstract;
 using ScrumTaskBoardXP.Data.Dtos;
 using ScrumTaskBoardXP.Entites.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -63,7 +64,8 @@ namespace ScrumTaskBoardXP.Business.Concrete
             {
                 Email = registerDto.Email,
                 Name = registerDto.Name,
-                PasswordSha1 = SHA1.Generate(registerDto.Password)
+                PasswordSha1 = SHA1.Generate(registerDto.Password),
+                HourlyWorkRate = new Random().Next(1,10)
             };
             _userDAL.Add(user);
 
