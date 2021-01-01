@@ -37,11 +37,9 @@ namespace ScrumTaskBoardXP.Tests
         public void Validate_New_Project_Model()
         {
             var dto = new ProjectDto { Name = "PROJE", Description = "aciklama", UserId = 5 };
-            var result = FluentValidationTool.Validate(new TaskDtoValidator(), dto);
+            var result = FluentValidationTool.Validate(new ProjectDtoValidator(), dto);
             Assert.IsTrue(result);
         }
-
-
 
         [TestMethod]
         public void Validate_New_Task_Model()

@@ -26,7 +26,7 @@ namespace ScrumTaskBoardXP.Business.Extensions
             services.AddScoped<ITaskTodosService, TaskTodosManager>();
             services.AddScoped<IUserService, UserManager>();
 
-            services.AddTransient<IValidator<ProjectDto>, TaskDtoValidator>();
+            services.AddTransient<IValidator<ProjectDto>, ProjectDtoValidator>();
             services.AddTransient<IValidator<TaskTodosDto>, TaskTodoDtoValidator>();
             services.AddTransient<IValidator<UserRegisterDto>, UserRegisterDtoValidator>();
         }

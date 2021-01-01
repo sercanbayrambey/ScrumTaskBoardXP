@@ -8,7 +8,7 @@ namespace ScrumTaskBoardXP.Business.Validations
         public UserRegisterDtoValidator()
         {
             RuleFor(I => I.Name).NotEmpty().WithMessage("İsim kısmı boş geçilemez").MaximumLength(100);
-            RuleFor(I => I.Email).NotEmpty().WithMessage("E Posta adresi boş geçilemez").MaximumLength(100);
+            RuleFor(I => I.Email).NotEmpty().WithMessage("E Posta adresi boş geçilemez").MaximumLength(100).EmailAddress().WithMessage("Lütfen geçerli bir e-posta adresi giriniz.");
             RuleFor(I => I.Password).NotEmpty().WithMessage("Şifre kısmı boş geçilemez.").MaximumLength(32);
         }
     }
