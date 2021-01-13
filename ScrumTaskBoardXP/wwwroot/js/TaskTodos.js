@@ -93,11 +93,26 @@ function ParseTableForTaskTodos(data) {
     tableBody.html('');
 
     for (var i = 0; i < data.length; i++) {
-        var status = data[i]['status'] == 0 ? "Yapılacak" : "Yapıldı";
+        var status = GetStatusText(data[i]['status']);
         var description = data[i]['description'] == null ? "" : data[i]['description'];
         tableBody.append($("<tr><td>" + data[i]['id'] + "</td><td>" + new Date(data[i]['dateAdded']).toLocaleString() + "</td ><td>" + data[i]['name'] + "</td><td>" + description + "</td><td value='" + data[i]['status'] + "'>" + status + "</td><td>" + '<a class="btn btn-warning" onclick="SwitchEditForm(this);">Düzenle</a> <a class="btn btn-danger" onClick="DeleteTaskTodo(' + data[i]['id'] + ',this)">Sil</a>' + "</td></tr>"))
     }
 
+}
+
+function GetStatusText(id) {
+    switch (id) {
+        case 0:
+            return "Yapılacak";
+        case 1:
+            return "Yapılıyor.";
+        case 2:
+            return "Değerlendirme aşamasında."
+        case 3:
+            return "Yapıldı";
+        default:
+            return "";
+    }
 }
 
 function GetTaskTodos() {
